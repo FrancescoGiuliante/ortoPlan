@@ -1,0 +1,47 @@
+<div class="hero mt-10 justify-center mx-auto">
+    <div class="hero-content flex flex-col gap-6">
+        <div class="text-center ">
+            <h1 class="text-[40px] font-bold">Registrati qui!</h1>
+        </div>
+        <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
+            <div class="flex flex-col md:flex-row gap-2 md:gap-10">
+                <form id="userForm" class="card-body">
+                    <div class="form-control -mt-8">
+                        <label class="label">
+                            <span class="label-text">Nome</span>
+                        </label>
+                        <input type="text" name="firstName" placeholder="nome" class="input input-bordered border-2 border-blue-400" required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Cognome</span>
+                        </label>
+                        <input type="text" name="lastName" placeholder="cognome" class="input input-bordered border-2 border-blue-400" required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Email</span>
+                        </label>
+                        <input type="email" name="email" placeholder="email" class="input input-bordered border-2 border-blue-400" required />
+                    </div>
+                    <div class="form-control tooltip hover:tooltip-right " data-tip="Minimo 5 caratteri">
+                        <label class="label">
+                            <span class="label-text">Password</span>
+                        </label>
+                        <input type="password" name="password" placeholder="password" class="input border-2 input-bordered border-blue-400" required />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Ripeti password</span>
+                        </label>
+                        <input type="password" name="confirmPassword" placeholder="password" class="input border-2 input-bordered border-blue-400" required />
+                    </div>
+                    <div class="form-control mt-6">
+                        <button class="btn bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]">Completa registrazione</button>
+                    </div>
+                </form>
+                <div class="justify-center m-auto"><img src="/assets/anson_png.png" class="h-52 md:h-80 -mt-10 md:mt-0" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'myFont';
+    src: url(/fonts/LuckiestGuy-Regular.ttf);
+    font-weight: lighter;
+}
+
+body {
+    font-family: 'myFont';
+  }
+
+.bg-custom {
+    background-image: url(/assets/download.jpeg);
+    background-repeat: repeat;
+    background-size: 200px;
+}

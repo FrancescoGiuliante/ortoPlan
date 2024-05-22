@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body>
+    <%- include('partials/head_1') %>
+        <div class="hero mt-16 justify-center mx-auto">
+            <div class="hero-content flex flex-col gap-6">
+                <div class="text-center ">
+                    <h1 class="text-5xl font-bold">Accedi qui!</h1>
+                </div>
+                <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
+                    <div class="flex gap-10">
+                        <form id="loginForm" class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Email</span>
+                                </label>
+                                <input type="email" name="email" placeholder="email"
+                                    class="input input-bordered border-2 border-[#fe3d52]" required />
+                            </div>
+                            <div class="form-control mt-4">
+                                <label class="label">
+                                    <span class="label-text">Password</span>
+                                </label>
+                                <input type="password" name="password" placeholder="password"
+                                    class="input border-2 input-bordered border-[#fe3d52]" required />
+                                <label class="label">
+                                    <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                                </label>
+                            </div>
+                            <!-- banner errore -->
+                            <div id="errorBanner" class="hidden p-4 mb-4 text-sm text-[#fe3d52]" role="alert">Error:
+                                Invalid email or password.</div>
+                            <div class="form-control mt-6">
+                                <button type="submit"
+                                    class="btn bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]">Login</button>
+                            </div>
+                        </form>
+                        <div class="justify-center m-auto"><img src="/assets/anson_png.png" class="h-80" alt=""></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between w-full">
+            <div class="flex">
+                <img src="/assets/squirtle_png.png" class="h-32" alt="">
+                <img src="/assets/squirtle_png.png" class="h-32" alt="">
+            </div>
+            <div>
+                <img src="/assets/charmander_png.png" class="h-32" alt="">
+            </div>
+        </div>
+        <script src="/scripts/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+import { createUserValidation } from '../validations/usersValidations.js'
+import { updateUserValidation } from '../validations/usersValidations.js'
+import prisma from '../../db/prisma.js'
+
+
+
+export default function userRouting(app) {
+    const DB_PATH = './db/users.json'
+
+    // users list
+    app.get('/users', async (req, res) => {
+        const users = await prisma.user.findMany()
+        res.json(users);
+    })
+
+    app.get('/users/:id', async (req, res) => {
+        const userId = +req.params.id;
+        const user = await prisma.user.findUnique({ where: { id: userId } })
+        res.json(user);
+    })
+
+    // metodo http DELETE
+    app.delete('/users/:id', async (req, res) => {
+        const userId = +req.params.id;
+        const user = await prisma.user.findUnique({ where: { id: userId } })
+        if (user) {
+            const userDelete = await prisma.user.delete({ where: { id: userId } })
+            // rimando al FE il record cancellato o l'intera collezzione
+            res.json(user)
+        } else {
+            res.status(404).json({ message: 'User not found' })
+        }
+    })
+
+    // metodo http DELETE ALL
+    app.delete('/usersDeleteAll/', async (req, res) => {
+        const userDeleteAll = await prisma.user.deleteMany()
+        // rimando al FE il 
+        res.json({ message: 'Tutti gli utenti sono stati eliminati' });
+
+    })
+    
+
+    // metodo http POST
+    app.post('/users', createUserValidation, async (req, res) => {
+        const newUser = await prisma.user.create({
+            data: {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password,
+                age: req.body.age,
+                // dataNascita: req.body.dataNascita
+            }
+        })
+
+        res.status(201);
+        res.json(newUser);
+
+    })
+
+    // metodo http PUT
+    app.put('/users/:id', updateUserValidation, async (req, res) => {
+        const userId = +req.params.id;
+        let user = await prisma.user.findUnique({ where: { id: userId } })
+
+        if (user) {
+            user.firstName = req.body.firstName
+            user.lastName = req.body.lastName
+            user.email = req.body.email
+            user.password = req.body.password
+
+            const userUpdate = await prisma.user.update({
+                where: { id: userId },
+                data: {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    password: user.password
+                }
+            })
+            res.json(user)
+        } else {
+            res.status(404).json({ message: 'User not found' })
+        }
+    })
+
+
+    // Get find per email
+    app.get('/userByEmail/:email', async (req, res) => {
+        const userEmail = req.params.email;
+        const user = await prisma.user.findUnique({ where: { email: userEmail } })
+        res.json(user);
+
+    })
+}

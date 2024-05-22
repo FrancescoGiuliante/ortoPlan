@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Landing page</title>
+</head>
+
+<body>
+    <%- include('partials/head_1') %>
+
+        <div
+            class="md:w-[50%] w-3/4 mt-14 justify-center m-auto border-[18px] md:border-[30px] rounded-full border-blue-950">
+            <div class="bg-white w-full">
+                <div class="hero bg-[#90ee90] md:w-[94%] m-auto border-[7px] rounded-xl border-blue-950">
+                    <div class="hero-content md:text-center">
+                        <div class="max-w-md flex flex-col gap-5 md:gap-0">
+                            <h1 class="text-4xl md:text-5xl text-center font-bold mt-10 md:mt-0 ">Se hai un orto non
+                                puoi darmi torto!</h1>
+                            <div class="m-auto flex ">
+                                <img src="/assets/trattore_blu.png" class="h-[200px]" alt="">
+                                <!-- <img src="/assets/carota_png.png" class="h-32" alt=""> -->
+                            </div>
+                            <h2 class="text-[17px] text-center"><span class="text-[#fe3d52] text-[24px]">OrtoPlan
+                                </span>fornisce tutti gli strumenti necessari per la pianificazione e
+                                gestione del tuo orto personale, in base al meteo sempre aggiornato tieni traccia dei
+                                tuoi
+                                lavori per il tuo magnifico raccolto.</h2>
+                            <div
+                                class="md:flex-row flex flex-col gap-5 md:gap-2 md:w-52 mx-auto justify-center mb-10 mt-4 md:mb-0">
+                                <button class="btn bg-white w-full border-blue-950 border-2 hover:bg-[#fe3d52]"><a
+                                        href="/first">Scopri il nostro sito!</a></button>
+                                <button class="btn bg-white w-full border-blue-950 border-2  hover:bg-[#fe3d52]"><a
+                                        href="/registration">Registrati qui!</a></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex -mt-32 md:-mt-[150px]">
+            <div class="md:ml-[360px] mt-2">
+                <img src="/assets/squirtle_png.png" class="h-44" alt="">
+            </div>
+            <div class="ml-16 md:ml-[470px]">
+                <img src="/assets/charmander_png.png" class="h-44" alt="">
+            </div>
+        </div>
+
+</body>
+
+</html>
