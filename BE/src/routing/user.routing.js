@@ -19,6 +19,11 @@ export default function userRouting(app) {
         res.json({ message: 'Welcome to the home page', user: req.user });
     });
 
+    // profilo
+    app.get('/profilo', isLoggedIn, (req, res) => {
+        res.json({ message: 'Questo è il profilo di:', user: req.user });
+    });
+
     app.get('/users/:id', async (req, res) => {
         const userId = +req.params.id;
         const user = await prisma.user.findUnique({ where: { id: userId } })

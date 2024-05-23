@@ -9,6 +9,8 @@ fetch('http://localhost:8000/home', {
             return res.json()
         }).then(data => {
             console.log('Data: ', data);
+            const span = document.querySelector('#user');
+            span.textContent = data.user['firstName'];
         })
 
 
