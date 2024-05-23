@@ -3208,14 +3208,6 @@ html:has(.drawer-toggle:checked) {
   margin-top: 1.75rem;
 }
 
-.ml-\[1000px\] {
-  margin-left: 1000px;
-}
-
-.ml-\[1020px\] {
-  margin-left: 1020px;
-}
-
 .flex {
   display: flex;
 }
@@ -3348,12 +3340,24 @@ html:has(.drawer-toggle:checked) {
   width: 100%;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
 .max-w-6xl {
   max-width: 72rem;
 }
 
 .max-w-md {
   max-width: 28rem;
+}
+
+.max-w-5xl {
+  max-width: 64rem;
 }
 
 .shrink-0 {
@@ -3563,6 +3567,11 @@ html:has(.drawer-toggle:checked) {
   padding-bottom: 1.5rem;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -3615,6 +3624,10 @@ html:has(.drawer-toggle:checked) {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-\[18px\] {
+  font-size: 18px;
 }
 
 .font-bold {
@@ -3687,10 +3700,27 @@ body {
   background-size: 200px;
 }
 
+.hover\:tooltip-bottom:hover:before {
+  transform: translateX(-50%);
+  top: var(--tooltip-offset);
+  left: 50%;
+  right: auto;
+  bottom: auto;
+}
+
 .hover\:tooltip-right:hover:before {
   transform: translateY(-50%);
   top: 50%;
   left: var(--tooltip-offset);
+  right: auto;
+  bottom: auto;
+}
+
+.hover\:tooltip-bottom:hover:after {
+  transform: translateX(-50%);
+  border-color: transparent transparent var(--tooltip-color) transparent;
+  top: var(--tooltip-tail-offset);
+  left: 50%;
   right: auto;
   bottom: auto;
 }

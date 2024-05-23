@@ -59,12 +59,15 @@ export function createUserValidation(req, res, next){
 export function updateUserValidation(req, res, next){
     validate.async(req.body, {
         firstName:{
+            presence: {allowEmpty: true},
             length: {minimum: 5}
         },
         lastName:{
+            presence: {allowEmpty: true},
             length: {minimum: 5}
         },
         email:{
+            presence: {allowEmpty: true},
             userExists: {
                 id: +req.params.id
             }

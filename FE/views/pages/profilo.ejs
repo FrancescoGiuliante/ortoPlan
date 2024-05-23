@@ -42,7 +42,58 @@
                             </svg>
                             <span id="email">Loading ...</span>
                         </label>
-                        <button class="btn bg-[#90ee90] hover:bg-white hover:border-2 text-[11px] hover:border-[#90ee90] w-[300px]">Modifica profilo</button>
+                        <button class="btn bg-[#90ee90] hover:bg-white hover:border-2 text-[11px] hover:border-[#90ee90] w-[300px]" onclick="my_modal_4.showModal()">Modifica profilo</button>
+                        <dialog id="my_modal_4" class="modal">
+                            <div class="modal-box w-1/2 max-w-5xl">
+                                <h1 class="text-center text-[18px]">Modifica il tuo profilo</h1>
+                                <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
+                                    <div class="flex flex-col md:flex-row gap-2 md:gap-10">
+                                        <form id="userForm" class="card-body">
+                                            <div class="form-control -mt-8">
+                                                <label class="label">
+                                                    <span class="label-text">Nome</span>
+                                                </label>
+                                                <input type="text" name="firstName" placeholder="nome" class="input input-bordered border-2 border-blue-400" />
+                                            </div>
+                                            <div class="form-control">
+                                                <label class="label">
+                                                    <span class="label-text">Cognome</span>
+                                                </label>
+                                                <input type="text" name="lastName" placeholder="cognome" class="input input-bordered border-2 border-blue-400" />
+                                            </div>
+                                            <div class="form-control">
+                                                <label class="label">
+                                                    <span class="label-text">Email</span>
+                                                </label>
+                                                <input type="email" name="email" placeholder="email" class="input input-bordered border-2 border-blue-400" />
+                                            </div>
+                                            <div class="form-control tooltip hover:tooltip-right " data-tip="Minimo 5 caratteri">
+                                                <label class="label">
+                                                    <span class="label-text">Password</span>
+                                                </label>
+                                                <input type="password" name="password" placeholder="password" class="input border-2 input-bordered border-blue-400" />
+                                            </div>
+                                            <div class="form-control">
+                                                <label class="label">
+                                                    <span class="label-text">Ripeti password</span>
+                                                </label>
+                                                <input type="password" name="confirmPassword" placeholder="password" class="input border-2 input-bordered border-blue-400" />
+                                            </div>
+                                            <div class="form-control mt-6">
+                                                <button class="btn bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]">Completa la modifica</button>
+                                            </div>
+                                        </form>
+                                        <div class="justify-center m-auto"><img src="/assets/anson_png.png" class="h-52 md:h-80 -mt-10 md:mt-0" alt=""></div>
+                                    </div>
+                                </div>
+                              <div class="modal-action">
+                                <form method="dialog">
+                                  <!-- if there is a button, it will close the modal -->
+                                  <button class="btn bg-[#90ee90] hover:bg-white hover:border-2 hover:border-[#90ee90]">Chiudi</button>
+                                </form>
+                              </div>
+                            </div>
+                          </dialog>
                     </div>
                 </div>
             </div>
@@ -57,7 +108,9 @@
 
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
-                    <script src="/scripts/profilo.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+                <script src="/scripts/profilo.js"></script>
+                <script src="/scripts/confirmation.js"></script>
 </body>
 
 </html>

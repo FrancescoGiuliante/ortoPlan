@@ -77,12 +77,13 @@ export default function userRouting(app) {
     app.put('/users/:id', updateUserValidation, async (req, res) => {
         const userId = +req.params.id;
         let user = await prisma.user.findUnique({ where: { id: userId } })
+        let userCredential = await prisma.credential.findUnique({ where: { userId: userId } })
 
         if (user) {
             user.firstName = req.body.firstName
             user.lastName = req.body.lastName
             user.email = req.body.email
-            user.password = req.body.password
+            userCredential.password = req.body.password
 
             const userUpdate = await prisma.user.update({
                 where: { id: userId },
@@ -90,7 +91,12 @@ export default function userRouting(app) {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    password: user.password
+                }
+            })
+            const credentialUpdate = await prisma.credential.update({
+                where: { userId: userId },
+                data: {
+                    password: userCredential.password
                 }
             })
             res.json(user)
