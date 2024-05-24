@@ -39,5 +39,9 @@ app.get('/first', (req, res) => {
     res.render('pages/first');
 })
 
+app.get('/calendar', (req, res) => {
+    res.render('pages/calendar');
+})
+
 
 app.listen(3000);
