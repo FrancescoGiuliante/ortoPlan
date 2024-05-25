@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Home</title>
+    <style>
+        tr.clickable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+    <%- include('partials/navbar') %>
+        <%- include('partials/menu') %>
+            <div class="w-[85%] flex justify-end">
+                <div class="overflow-x-auto ">
+                    <table class="table">
+                        <!-- head -->
+                        <thead>
+                            <tr class="text-xl text-blue-950">
+                                <th>Nome orto</th>
+                                <th>Tipo di coltivazione</th>
+                                <th>Prossimo evento pianificato</th>
+                                <th>Meteo attuale</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- row 1 -->
+                            <tr class="clickable" onclick="window.location='/home'">
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
+                                                    alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold">Hart Hagerty</div>
+                                            <div class="text-sm opacity-50">United States</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    Zemlak, Daniel and Leannon
+                                    <br />
+                                    <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                </td>
+                                <td>Purple</td>
+                                <td></td>
+                                <th class="flex flex-col">
+                                    <button class="btn btn-ghost btn-xs">Dettagli</button>
+                                    <button class="btn btn-ghost btn-xs">Pianifica</button>
+                                </th>
+                            </tr>
+                        </tbody>
+
+
+
+                    </table>
+                </div>
+
+            </div>
+
+
+
+
+            <%- include('partials/footer') %>
+                <%- include('partials/drawer_content') %>
+                    <script src="/scripts/home.js"></script>
+</body>
+
+</html>

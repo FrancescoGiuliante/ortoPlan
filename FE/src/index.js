@@ -23,6 +23,10 @@ app.get('/home', (req, res) => {
     res.render('pages/home');
 })
 
+app.get('/mieiorti', (req, res) => {
+    res.render('pages/mieiorti');
+})
+
 app.get('/profilo', (req, res) => {
     res.render('pages/profilo');
 })
