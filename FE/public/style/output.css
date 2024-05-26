@@ -3624,6 +3624,14 @@ html:has(.drawer-toggle:checked) {
   margin-top: 2rem;
 }
 
+.mt-32 {
+  margin-top: 8rem;
+}
+
+.mt-48 {
+  margin-top: 12rem;
+}
+
 .block {
   display: block;
 }
@@ -3740,6 +3748,10 @@ html:has(.drawer-toggle:checked) {
   width: 2.5rem;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
 .w-3\/4 {
   width: 75%;
 }
@@ -3792,32 +3804,12 @@ html:has(.drawer-toggle:checked) {
   width: 100%;
 }
 
-.w-12 {
-  width: 3rem;
+.w-1\/2 {
+  width: 50%;
 }
 
-.w-\[\] {
-  width: ;
-}
-
-.w-\[90\] {
-  width: 90;
-}
-
-.w-\[90\%\] {
-  width: 90%;
-}
-
-.w-\[80\%\] {
-  width: 80%;
-}
-
-.w-\[full\%\] {
-  width: full%;
-}
-
-.w-\[0\%\] {
-  width: 0%;
+.w-3 {
+  width: 0.75rem;
 }
 
 .max-w-6xl {
@@ -3905,6 +3897,10 @@ html:has(.drawer-toggle:checked) {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -3915,10 +3911,6 @@ html:has(.drawer-toggle:checked) {
 
 .gap-6 {
   gap: 1.5rem;
-}
-
-.gap-3 {
-  gap: 0.75rem;
 }
 
 .overflow-hidden {
@@ -4405,12 +4397,12 @@ html:has(.drawer-toggle:checked) {
   opacity: 0.25;
 }
 
-.opacity-70 {
-  opacity: 0.7;
-}
-
 .opacity-50 {
   opacity: 0.5;
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .shadow {
@@ -4582,6 +4574,14 @@ body {
 
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:mt-32 {
+    margin-top: 8rem;
+  }
+
+  .md\:mb-40 {
+    margin-bottom: 10rem;
   }
 
   .md\:flex {
