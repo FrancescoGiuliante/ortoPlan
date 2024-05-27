@@ -14,6 +14,11 @@ export default function userRouting(app) {
         res.json(users);
     })
 
+    app.get('/ortaggi', async (req, res) => {
+        const ortaggi = await prisma.ortaggi.findMany()
+        res.json(ortaggi);
+    })
+
     // home
     app.get('/home', isLoggedIn, (req, res) => {
         res.json({ message: 'Welcome to the home page', user: req.user });

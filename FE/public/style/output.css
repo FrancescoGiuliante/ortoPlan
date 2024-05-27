@@ -3147,6 +3147,14 @@ html:has(.drawer-toggle:checked) {
   bottom: var(--tooltip-offset);
 }
 
+.tooltip-right:before {
+  transform: translateY(-50%);
+  top: 50%;
+  left: var(--tooltip-offset);
+  right: auto;
+  bottom: auto;
+}
+
 .avatar.online:before {
   content: "";
   position: absolute;
@@ -3396,6 +3404,15 @@ html:has(.drawer-toggle:checked) {
   bottom: var(--tooltip-tail-offset);
 }
 
+.tooltip-right:after {
+  transform: translateY(-50%);
+  border-color: transparent var(--tooltip-color) transparent transparent;
+  top: 50%;
+  left: calc(var(--tooltip-tail-offset) + 0.0625rem);
+  right: auto;
+  bottom: auto;
+}
+
 .pointer-events-none {
   pointer-events: none;
 }
@@ -3512,6 +3529,10 @@ html:has(.drawer-toggle:checked) {
   margin-top: -9rem;
 }
 
+.-mt-4 {
+  margin-top: -1rem;
+}
+
 .-mt-8 {
   margin-top: -2rem;
 }
@@ -3624,14 +3645,6 @@ html:has(.drawer-toggle:checked) {
   margin-top: 2rem;
 }
 
-.mt-32 {
-  margin-top: 8rem;
-}
-
-.mt-48 {
-  margin-top: 12rem;
-}
-
 .block {
   display: block;
 }
@@ -3666,6 +3679,10 @@ html:has(.drawer-toggle:checked) {
 
 .h-12 {
   height: 3rem;
+}
+
+.h-16 {
+  height: 4rem;
 }
 
 .h-2 {
@@ -3802,14 +3819,6 @@ html:has(.drawer-toggle:checked) {
 
 .w-full {
   width: 100%;
-}
-
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-3 {
-  width: 0.75rem;
 }
 
 .max-w-6xl {
@@ -4233,12 +4242,12 @@ html:has(.drawer-toggle:checked) {
   font-size: 11px;
 }
 
-.text-\[14px\] {
-  font-size: 14px;
+.text-\[12px\] {
+  font-size: 12px;
 }
 
-.text-\[16px\] {
-  font-size: 16px;
+.text-\[14px\] {
+  font-size: 14px;
 }
 
 .text-\[17px\] {
@@ -4446,12 +4455,11 @@ html:has(.drawer-toggle:checked) {
   font-family: 'myFont';
 
   src: url(/fonts/LuckiestGuy-Regular.ttf);
-
-  font-weight: lighter;
 }
 
 body {
   font-family: 'myFont';
+  font-weight: 100 !important;
 }
 
 .bg-custom {
@@ -4552,6 +4560,10 @@ body {
 }
 
 @media (min-width: 768px) {
+  .md\:-mt-16 {
+    margin-top: -4rem;
+  }
+
   .md\:-mt-36 {
     margin-top: -9rem;
   }
@@ -4562,6 +4574,10 @@ body {
 
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .md\:mb-40 {
+    margin-bottom: 10rem;
   }
 
   .md\:ml-\[360px\] {
@@ -4580,16 +4596,16 @@ body {
     margin-top: 8rem;
   }
 
-  .md\:mb-40 {
-    margin-bottom: 10rem;
-  }
-
   .md\:flex {
     display: flex;
   }
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:h-20 {
+    height: 5rem;
   }
 
   .md\:h-32 {
@@ -4608,8 +4624,16 @@ body {
     width: 25%;
   }
 
+  .md\:w-2\/3 {
+    width: 66.666667%;
+  }
+
   .md\:w-3\/4 {
     width: 75%;
+  }
+
+  .md\:w-4\/5 {
+    width: 80%;
   }
 
   .md\:w-52 {
@@ -4667,6 +4691,10 @@ body {
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .md\:text-\[16px\] {
+    font-size: 16px;
   }
 
   .md\:text-xl {

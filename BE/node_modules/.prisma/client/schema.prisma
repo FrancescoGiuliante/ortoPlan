@@ -20,3 +20,16 @@ model Credential {
   user     User   @relation(fields: [userId], references: [id])
   password String
 }
+
+model Ortaggi {
+  nome                  String   @id
+  periodoColtivazione   String
+  esposizione           String
+  tempiMaturazione      Int
+  tipoTerreno           String
+  distanzaPiantagione   String
+  profonditaSemina      String
+  temperaturaMin        String
+  temperaturaMax        String
+  note                  String
+}

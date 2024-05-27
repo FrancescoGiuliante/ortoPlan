@@ -15,6 +15,10 @@ app.get('/users/:id', (req, res) => {
     res.render('pages/user', {userId: +req.params.id})
 })
 
+app.get('/info_ortaggi', (req, res) => {
+    res.render('pages/info_ortaggi');
+})
+
 app.get('/login', (req, res) => {
     res.render('pages/login');
 })

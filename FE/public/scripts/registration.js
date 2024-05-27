@@ -62,7 +62,7 @@ userForm.addEventListener('submit', async (e) => {
 
     const url = 'http://localhost:8000/users';
 
-    fetch(url, {
+    const userResponse = await fetch(url, {
         method: 'POST',
         body: JSON.stringify({
             firstName,
@@ -73,13 +73,40 @@ userForm.addEventListener('submit', async (e) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.isError) {
-                Object.keys(data.error).forEach(key => setError(document.querySelector(`input[name=${key}]`), data.error[key]))
-                console.log(data.error[key])
-            }
-        })
-});
+    });
 
+    const userData = await userResponse.json();
+
+    if (userData.isError) {
+        Object.keys(userData.error).forEach(key => setError(document.querySelector(`input[name=${key}]`), userData.error[key]))
+        console.log(userData.error[key]);
+        return;
+    }
+
+    const loginResponse = await fetch("http://localhost:8000/login", {
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            password
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (loginResponse.status !== 200) {
+        console.log('errore');
+        return;
+    }
+
+    const loginData = await loginResponse.json();
+
+    console.log('data: ', loginData.message);
+    if (loginData.message == 'credenziali errate') {
+        errorBanner.classList.remove('hidden');
+    } else {
+        localStorage.setItem('user', JSON.stringify(loginData.user));
+        localStorage.setItem('token', loginData.token);
+        window.location.href = '/home';
+    }
+});

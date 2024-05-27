@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Info ortaggi</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+	<%- include('partials/menu') %>
+    
+    <h1 class="text-4xl text-center mt-5 md:mt-32 mb-20 text-[#fe3d52]">Ortaggi</h1>
+            <div class="flex justify-end mb-20 md:mb-40">
+                <div class="overflow-x-auto">
+                    <table id="ortaggioTable" class="table">
+                        <!-- head -->
+                        <thead>
+                            <tr class="text-[12px] text-gray-600">
+                                <th>Nome</th>
+                                <th>Periodo di coltivazione</th>
+                                <th>Esposizione</th>
+                                <th>Tempi di maturazione</th>
+                                <th>Tipo di terreno consigliato</th>
+                                <th>Distanza di piantagione</th>
+                                <th>Profondità di semina</th>
+                                <th>Temperatura minima</th>
+                                <th>Temperatura massima</th>
+                                <th>Note</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ortaggi-tbody" class="text-[12px]">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+    
+    <%- include('partials/footer') %>
+	<%- include('partials/drawer_content') %>
+    <script src="/scripts/info_ortaggi.js"></script>
+    
+</body>
+</html>

@@ -11,9 +11,8 @@ loginForm.addEventListener('submit', async (e) => {
 
     email = inputEmail.value
     password = inputPassword.value
-    console.log({email, password});
 
-     const res = await fetch("http://localhost:8000/login", {
+    const res = await fetch("http://localhost:8000/login", {
         body: JSON.stringify({
             email,
             password
@@ -30,7 +29,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     const data = await res.json()
 
-    console.log('data: ',data.message);
+    console.log('data: ', data.message);
     if (data.message == 'credenziali errate') {
         errorBanner.classList.remove('hidden');
     } else {

@@ -5,11 +5,11 @@
 @font-face {
     font-family: 'myFont';
     src: url(/fonts/LuckiestGuy-Regular.ttf);
-    font-weight: lighter;
 }
 
 body {
     font-family: 'myFont';
+    font-weight: 100 !important;
   }
 
 .bg-custom {
