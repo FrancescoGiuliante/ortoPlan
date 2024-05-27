@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/style/output.css" rel="stylesheet">
     <title>Info ortaggi</title>
 </head>
+
 <body>
     <%- include('partials/navbar') %>
-	<%- include('partials/menu') %>
-    
-    <h1 class="text-4xl text-center mt-5 md:mt-32 mb-20 text-[#fe3d52]">Ortaggi</h1>
-            <div class="flex justify-end mb-20 md:mb-40">
-                <div class="overflow-x-auto">
-                    <table id="ortaggioTable" class="table">
-                        <!-- head -->
-                        <thead>
-                            <tr class="text-[12px] text-gray-600">
-                                <th>Nome</th>
-                                <th>Periodo di coltivazione</th>
-                                <th>Esposizione</th>
-                                <th>Tempi di maturazione</th>
-                                <th>Tipo di terreno consigliato</th>
-                                <th>Distanza di piantagione</th>
-                                <th>Profondità di semina</th>
-                                <th>Temperatura minima</th>
-                                <th>Temperatura massima</th>
-                                <th>Note</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ortaggi-tbody" class="text-[12px]">
-                        </tbody>
-                    </table>
-                </div>
+        <%- include('partials/menu') %>
 
+            <div class="flex gap-2 w-full justify-center items-center">
+                <img src="/assets/lettura.png" class="h-32 md:h-40" alt="">
+                <h1 class="font-light text-3xl md:text-4xl mt-20 mb-20 text-[#fe3d52]">Tutto quello che devi sapere sugli ortaggi</h1>
+                
             </div>
-    
-    <%- include('partials/footer') %>
-	<%- include('partials/drawer_content') %>
-    <script src="/scripts/info_ortaggi.js"></script>
-    
+           
+            <template id="cardTemplate">
+                <div class="card card-side bg-base-100 border-x-8 border-y-0 mb-20 border-[#90ee90] gap-0 md:gap-24 w-full">
+                    <figure class="w-full border-[5px] border-[#298a4b]"><img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" class="h-28 w-full md:h-52" alt="Movie" /></figure>
+                    <div class="card-body">
+                        <h2 class="card-title text-2xl font-light text-[#fe3d52]">Nome Ortaggio</h2>
+                        <span><span class="text-[#298a4b]">Periodo di coltivazione:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Esposizione:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Tempi di maturazione:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Tipo di terreno consigliato:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Distanza di piantagione:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Profondità di semina:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Temperatura minima:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Temperatura massima:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Note:</span> <span class="value text-gray-600"></span></span>
+                    </div>
+                </div>
+            </template>            
+            <div class="w-full flex justify-center">
+                <div class="card-container w-[90%] md:w-1/2 flex flex-wrap mb-32"></div>
+            </div>
+            
+
+            
+            
+            
+           
+
+            <%- include('partials/footer') %>
+                <%- include('partials/drawer_content') %>
+                    <script src="/scripts/info_ortaggi.js"></script>
+
 </body>
+
 </html>

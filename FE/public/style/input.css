@@ -9,7 +9,6 @@
 
 body {
     font-family: 'myFont';
-    font-weight: 100 !important;
   }
 
 .bg-custom {
@@ -17,3 +16,13 @@ body {
     background-repeat: repeat;
     background-size: 200px;
 }
+
+.bg-custom2 {
+    background-image: url(/assets/simboli_bianco.png);
+    background-repeat: repeat;
+    background-size: 180px;
+}
+
+/* div, h1, h2, h3, h4, h5, h6, p, span, a, button, li, ul, ol, input, textarea, select {
+    font-weight: lighter;
+} */
