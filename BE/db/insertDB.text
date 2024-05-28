@@ -1,0 +1,34 @@
+1- Insert del glossario:
+INSERT INTO Glossario (parola, definizione)
+VALUES 
+    ('Orto', 'Un''area di terra o giardino coltivato dove vengono piantati ortaggi, erbe aromatiche o piante da frutto.'),
+    ('Coltivazione', 'Il processo di preparazione e cura del terreno per la crescita e la produzione di piante, generalmente con lo scopo di ottenere raccolti di cibo o altre risorse utili.'),
+    ('Semina', 'Il processo di piantare semi nel terreno per far crescere nuove piante.'),
+    ('Fertilizzante', 'Sostanza organica o inorganica aggiunta al terreno per migliorare la sua fertilità e fornire nutrienti essenziali alle piante.'),
+    ('Irrigazione', 'Il processo di fornitura controllata di acqua alle piante per garantire una crescita sana e una produzione ottimale.'),
+    ('Pesticidi', 'Sostanze chimiche o biologiche utilizzate per proteggere le piante dall''attacco di insetti, malattie e infestazioni di parassiti.'),
+    ('Trapianto', 'Il processo di rimozione di una pianta dalla sua posizione originale e il suo reimpianto in un''altra posizione, spesso in un terreno più adatto o in un contenitore.'),
+    ('Moltiplicazione', 'Il processo di creazione di nuove piante da una pianta madre, attraverso metodi come talee, talee fogliari, divisione e propagazione dei semi.'),
+    ('Pacciamatura', 'Il processo di copertura del terreno intorno alle piante con materiali organici o inorganici per controllare le erbacce, ridurre l''evaporazione dell''acqua e migliorare la salute del suolo.'),
+    ('Potatura', 'Il processo di rimozione di parti indesiderate o morte di una pianta, come rami o foglie, per promuovere la crescita sana, la forma desiderata e la produzione di frutti.'),
+    ('Compostaggio', 'Il processo di decomposizione naturale dei materiali organici in un composto ricco di nutrienti noto come compost, utilizzato come fertilizzante per il terreno delle piante.'),
+    ('Malattie delle piante', 'Condizioni patologiche che colpiscono le piante, causate da agenti patogeni come batteri, virus, funghi, parassiti o fattori ambientali.'),
+    ('Gestione integrata delle piante', 'Un approccio alla coltivazione delle piante che utilizza una combinazione di metodi biologici, culturali, fisici e chimici per gestire le piante in modo sostenibile e ridurre l''uso di pesticidi e fertilizzanti sintetici.'),
+    ('Rotazione delle colture', 'Una pratica agricola che prevede la variazione periodica dei tipi di colture coltivate in una determinata area di terreno per prevenire l''esaurimento del suolo, ridurre le malattie delle piante e migliorare la fertilità del terreno.'),
+    ('Giardino biologico', 'Un giardino coltivato utilizzando pratiche agricole biologiche che escludono l''uso di pesticidi, fertilizzanti sintetici e organismi geneticamente modificati, promuovendo invece metodi di coltivazione sostenibili e rispettosi dell''ambiente.');
+
+
+
+
+2-Insert info ortaggi:
+INSERT INTO ortaggi (nome, periodoColtivazione, esposizione, tempiMaturazione, tipoTerreno, distanzaPiantagione, profonditaSemina, temperaturaMin, temperaturaMax, frequenzaInnaffiatura, Note) VALUES
+('Carote', 'Marzo - Luglio', 'All\'aperto', 75, 'Sabbioso, ben drenato', '5-7 cm', '1-2 cm', '7°C', '30°C', 3, 'Evitare terreni compatti. Assicurarsi di mantenere il terreno umido fino alla germinazione. Le carote preferiscono temperature fresche.'),
+('Pomodori', 'Aprile - Luglio', 'All\'aperto', 60, 'Fertile, ben drenato', '50-60 cm', '1 cm', '10°C', '35°C', 2, 'Richiede supporto per la crescita. Irrigazione regolare è cruciale. Evitare l\'innaffiatura eccessiva per prevenire la marciume delle radici.'),
+('Lattuga', 'Febbraio - Ottobre', 'All\'aperto', 45, 'Ricco di humus, ben drenato', '20-30 cm', '0.5 cm', '5°C', '24°C', 1, 'Evitare temperature troppo alte. Piantare in successione per un raccolto continuo. La lattuga può essere coltivata anche in contenitori.'),
+('Peperoni', 'Marzo - Giugno', 'All\'aperto', 70, 'Fertile, ben drenato', '40-50 cm', '1 cm', '15°C', '30°C', 3, 'Richiede molta luce solare. Concimare regolarmente per favorire una buona crescita. Proteggere dalle gelate tardive.'),
+('Zucchine', 'Aprile - Agosto', 'All\'aperto', 50, 'Ricco di humus, ben drenato', '80-100 cm', '2-3 cm', '15°C', '35°C', 2, 'Richiede spazio per crescere. Irrigare regolarmente e abbondantemente. Raccogliere i frutti giovani per migliorare la produttività.'),
+('Cipolle', 'Febbraio - Maggio', 'All\'aperto', 120, 'Fertile, ben drenato', '10-15 cm', '2 cm', '10°C', '30°C', 4, 'Richiede terreni non compatti. Assicurarsi che il terreno non si asciughi troppo durante la crescita. Le cipolle possono essere conservate a lungo.'),
+('Spinaci', 'Marzo - Maggio, Settembre - Ottobre', 'All\'aperto', 40, 'Ricco di humus, ben drenato', '5-10 cm', '1 cm', '5°C', '25°C', 2, 'Evitare temperature troppo alte. Piantare in successione per un raccolto continuo. Richiede irrigazione regolare per prevenire l\'amaritudine.'),
+('Fagioli', 'Aprile - Giugno', 'All\'aperto', 60, 'Fertile, ben drenato', '5-7 cm', '2-3 cm', '15°C', '30°C', 3, 'Richiede supporto per la crescita. Fissano l\'azoto nel terreno, beneficiando altre piante. Evitare l\'irrigazione eccessiva.'),
+('Piselli', 'Febbraio - Maggio', 'All\'aperto', 70, 'Fertile, ben drenato', '5-10 cm', '3-5 cm', '10°C', '25°C', 3, 'Richiede supporto per la crescita. I piselli preferiscono temperature fresche. Possono essere piantati in successione per prolungare il raccolto.'),
+('Cavolfiore', 'Marzo - Maggio, Settembre - Ottobre', 'All\'aperto', 90, 'Ricco di humus, ben drenato', '50-60 cm', '1-2 cm', '10°C', '25°C', 2, 'Evitare temperature troppo alte. Proteggere dal sole intenso per prevenire lo scolorimento. Richiede irrigazione regolare per evitare stress.');

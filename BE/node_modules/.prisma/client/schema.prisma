@@ -13,6 +13,7 @@ model User {
   lastName    String
   email       String      @unique
   credentials Credential?
+  myorti        MyOrto[]
 }
 
 model Credential {
@@ -33,9 +34,23 @@ model Ortaggi {
   temperaturaMax        String
   frequenzaInnaffiatura Int
   note                  String
+  myorti                  MyOrto[] // Relazione uno-a-molti con MyOrto
 }
 
 model Glossario {
   parola       String   @id
   definizione  String
+}
+
+model MyOrto {
+  id              Int       @id @default(autoincrement())
+  nome            String
+  citta           String
+  tipoPiantagione String
+  numeroPiante    Int
+  dataSemina      DateTime
+  sistemazione    String
+  userId          Int
+  user            User      @relation(fields: [userId], references: [id])
+  ortaggio        Ortaggi   @relation(fields: [tipoPiantagione], references: [nome])
 }
