@@ -23,6 +23,6 @@ body {
     background-size: 180px;
 }
 
-/* div, h1, h2, h3, h4, h5, h6, p, span, a, button, li, ul, ol, input, textarea, select {
-    font-weight: lighter;
-} */
+div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, textarea, select {
+    font-weight: 300;
+}

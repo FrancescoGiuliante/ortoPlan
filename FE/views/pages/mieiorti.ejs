@@ -24,8 +24,8 @@
                         <!-- modal crea nuovo orto -->
                         <div class="w-full justify-center flex">
                             <button
-                            class="btn bg-[#90ee90] hover:bg-white hover:border-2 mt-6  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]"
-                            onclick="my_modal_4.showModal()">Crea orto</button>
+                                class="btn bg-[#90ee90] hover:bg-white hover:border-2 mt-6  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]"
+                                onclick="my_modal_4.showModal()">Crea orto</button>
 
                         </div>
                         <dialog id="my_modal_4" class="modal">
@@ -33,12 +33,12 @@
                                 <h1 class="text-center text-[18px]">Creazione nuovo orto</h1>
                                 <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
                                     <div class="flex flex-col md:flex-row gap-2 md:gap-10">
-                                        <form id="userForm" class="card-body">
+                                        <form id="ortoForm" class="card-body">
                                             <div class="form-control -mt-8">
                                                 <label class="label">
                                                     <span class="label-text">Nome</span>
                                                 </label>
-                                                <input type="text" name="firstName" placeholder="nome"
+                                                <input type="text" name="nome" placeholder="nome"
                                                     class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control">
@@ -48,26 +48,38 @@
                                                 <input type="text" id="citta" name="citta" placeholder="luogo"
                                                     class="input input-bordered border-2 border-blue-400" />
                                             </div>
-                                            <div class="form-control">
-                                                <label class="label">
-                                                    <span class="label-text">Tipo di piantagione</span>
-                                                </label>
-                                                <input type="email" name="email" placeholder="email"
-                                                    class="input input-bordered border-2 border-blue-400" />
+                                            <div class="flex w-full">
+                                                <div class="form-control">
+                                                    <label class="label">
+                                                        <span class="label-text">Tipo di piantagione</span>
+                                                    </label>
+                                                    <select type="text" id="sceltaOrtaggi" name="sceltaOrtaggi"
+                                                        placeholder="Tipo piantagione"
+                                                        class="input input-bordered border-2 border-blue-400"></select>
+                                                </div>
+                                                <div>
+                                                    <div class="form-control">
+                                                        <label class="label">
+                                                            <span class="label-text">Numero di piantine</span>
+                                                        </label>
+                                                        <input type="number" name="numeroPiante" placeholder="Numero"
+                                                            class="input input-bordered border-2 w-[100px] md:w-[140px]  border-blue-400" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Data semina</span>
                                                 </label>
-                                                <input type="date" name="password" placeholder="password"
+                                                <input type="date" name="data" placeholder="Data"
                                                     class="input border-2 input-bordered border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Sistemazione</span>
                                                 </label>
-                                                <input type="password" name="confirmPassword" placeholder="password"
-                                                    class="input border-2 input-bordered border-blue-400" />
+                                                <select id="sistemazione" name="sistemazione" placeholder="Sistemazione"
+                                                    class="input border-2 input-bordered border-blue-400"></select>
                                             </div>
                                             <div class="form-control mt-6">
                                                 <button
@@ -147,6 +159,7 @@
 
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
+                    <script src="/scripts/mieiorti.js"></script>
 </body>
 
 </html>

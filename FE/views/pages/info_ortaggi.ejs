@@ -9,7 +9,15 @@
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
+    
+    
+    <nav id="navbarLoggato">
+        <%- include('partials/navbar') %>
+    </nav>
+    <nav id="navbarNonLoggato">
+        <%- include('partials/head_1') %>
+    </nav>
+
         <%- include('partials/menu') %>
 
             <div class="flex gap-2 w-full justify-center items-center">
@@ -25,13 +33,13 @@
                         <h2 class="card-title text-2xl font-light text-[#fe3d52]">Nome Ortaggio</h2>
                         <span><span class="text-[#298a4b]">Periodo di coltivazione:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Esposizione:</span> <span class="value text-gray-600"></span></span>
-                        <span><span class="text-[#298a4b]">Tempi di maturazione:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Giorni per maturazione:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Tipo di terreno consigliato:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Distanza di piantagione:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Profondità di semina:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Temperatura minima:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Temperatura massima:</span> <span class="value text-gray-600"></span></span>
-                        <span><span class="text-[#298a4b]">Frequenza innaffiatura:</span> <span class="value text-gray-600"></span></span>
+                        <span><span class="text-[#298a4b]">Ogni quanti giorni va innaffiata:</span> <span class="value text-gray-600"></span></span>
                         <span><span class="text-[#298a4b]">Note:</span> <span class="value text-gray-600"></span></span>
                     </div>
                 </div>

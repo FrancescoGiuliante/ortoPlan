@@ -35,3 +35,18 @@ function showTable() {
 }
 
 showTable()
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    var user = localStorage.getItem("user");
+    var token = localStorage.getItem("token");
+
+    if (user && token) {
+        document.getElementById("navbarLoggato").style.display = "block";
+        document.getElementById("navbarNonLoggato").style.display = "none";
+    } else {
+        document.getElementById("navbarLoggato").style.display = "none";
+        document.getElementById("navbarNonLoggato").style.display = "block";
+    }
+});

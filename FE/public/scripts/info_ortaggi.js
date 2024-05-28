@@ -79,9 +79,9 @@ function addCard(ortaggio, index) {
 
 function showTable() {
     // Svuota il contenitore delle card
-    while (cardContainer.firstChild) {
-        cardContainer.removeChild(cardContainer.firstChild);
-    }
+    // while (cardContainer.firstChild) {
+    //     cardContainer.removeChild(cardContainer.firstChild);
+    // }
 
     fetch('http://localhost:8000/ortaggi', {
         headers: {
@@ -93,5 +93,18 @@ function showTable() {
         data.forEach((ortaggio, index) => addCard(ortaggio, index));
     });
 }
-
 showTable();
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    var user = localStorage.getItem("user");
+    var token = localStorage.getItem("token");
+
+    if (user && token) {
+        document.getElementById("navbarLoggato").style.display = "block";
+        document.getElementById("navbarNonLoggato").style.display = "none";
+    } else {
+        document.getElementById("navbarLoggato").style.display = "none";
+        document.getElementById("navbarNonLoggato").style.display = "block";
+    }
+});
