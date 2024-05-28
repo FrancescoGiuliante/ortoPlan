@@ -31,5 +31,11 @@ model Ortaggi {
   profonditaSemina      String
   temperaturaMin        String
   temperaturaMax        String
+  frequenzaInnaffiatura Int
   note                  String
+}
+
+model Glossario {
+  parola       String   @id
+  definizione  String
 }

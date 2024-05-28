@@ -19,6 +19,11 @@ export default function userRouting(app) {
         res.json(ortaggi);
     })
 
+    app.get('/glossario', async (req, res) => {
+        const vocabolo = await prisma.glossario.findMany()
+        res.json(vocabolo);
+    })
+
     // home
     app.get('/home', isLoggedIn, (req, res) => {
         res.json({ message: 'Welcome to the home page', user: req.user });

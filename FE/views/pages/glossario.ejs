@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Glossario</title>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+    <%- include('partials/menu') %>
+    
+
+
+    <h1 class="text-center font-light text-4xl mb-20 mt-10 text-[#fe3d52]">Glossario</h1>
+    <div class="w-4/5 flex justify-end">
+        <div class="w-3/4">
+            <div class="overflow-x-auto mb-32 rounded-xl border-[#90ee90] border-x-8 ">
+                <table class="table table-zebra" id="wordTable">
+                    <!-- head -->
+                    <thead class="border-b-4 border-[#90ee90]">
+                        <tr class="text-xl text-[#298a4b] ">
+                            <th class="font-light">Vocabolo</th>
+                            <th class="font-light">Definizione</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <%- include('partials/footer') %>
+    <%- include('partials/drawer_content') %>
+    <script src="/scripts/glossario.js"></script>
+</body>
+
+</html>

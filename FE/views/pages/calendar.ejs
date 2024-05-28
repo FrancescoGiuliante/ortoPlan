@@ -12,6 +12,7 @@
 	<%- include('partials/navbar') %>
 		<%- include('partials/menu') %>
 			<div class="w-full flex justify-center gap-2 items-center">
+
 				<h1 class="text-4xl text-center text-[#fe3d52] mt-10">Calendario</h1>
 				<img src="/assets/calendariobulba.png" class="h-40" alt="">
 			</div>
@@ -141,7 +142,7 @@
 						<div style=" background-color: rgba(0, 0, 0, 0.8)"
 							class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-full"
 							x-show.transition.opacity="openEventModal">
-							<div class="p-4 max-w-xl mx-auto  absolute left-0 right-0 overflow-hidden mt-24">
+							<div class="p-4 max-w-xl mx-auto  absolute left-0 right-0 overflow-hidden mt-6 md:mt-24">
 								<div class="shadow absolute right-0 top-0 w-10 h-10 rounded-full bg-white text-gray-500 hover:text-gray-800 inline-flex items-center justify-center cursor-pointer"
 									x-on:click="openEventModal = !openEventModal">
 									<svg class="fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +157,7 @@
 									<div class=" flex w-full justify-between">
 										<h2 class="font-bold text-2xl text-[#fe3d52] mb-6 border-b pb-2">Aggiungi evento
 										</h2>
-										<img src="/assets/contadina.png" class="h-32" alt="">
+										<img src="/assets/contadina.png" class="h-40" alt="">
 
 									</div>
 

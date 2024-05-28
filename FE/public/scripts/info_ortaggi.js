@@ -66,7 +66,8 @@ function addCard(ortaggio, index) {
     values[5].textContent = ortaggio.profonditaSemina;
     values[6].textContent = ortaggio.temperaturaMin;
     values[7].textContent = ortaggio.temperaturaMax;
-    values[8].textContent = ortaggio.note;
+    values[8].textContent = ortaggio.frequenzaInnaffiatura;
+    values[9].textContent = ortaggio.note;
 
     // Imposta l'immagine
     const img = card.querySelector('figure img');
