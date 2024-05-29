@@ -1,26 +1,43 @@
-fetch('http://localhost:8000/ortaggi', {
-    headers: {
-        'Content-Type': 'application/json'
+const ortoTableBody = document.querySelector('#ortoTable tbody')
+
+function addRow(orto) {
+    const tr = document.createElement('tr');
+    tr.setAttribute('nome-orto', orto.nome);
+
+    ['nome', 'tipoPiantagione'].forEach(field => {
+        const td = document.createElement('td');
+        td.textContent = orto?.[field]
+        tr.appendChild(td);
+    })
+    ortoTableBody.appendChild(tr)
+}
+
+function showTable() {
+    const userString = localStorage.getItem('user');
+    const userStorage = JSON.parse(userString);
+    userId = userStorage['id']
+    let child = ortoTableBody.lastElementChild
+    while (child) {
+        console.log(child)
+        ortoTableBody.removeChild(child)
     }
-})
-.then(res => res.json())
-.then(data => {
-    var selectOrtaggi = document.getElementById("sceltaOrtaggi");
 
-    data.forEach(function(oggetto) {
-        var option = document.createElement("option");
-        option.value = oggetto.nome;
-        option.text = oggetto.nome;
-        selectOrtaggi.appendChild(option);
-    });
-})
+    fetch('http://localhost:8000/myOrto', {
+        method: 'POST',
+        body: JSON.stringify({
+            userId,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token') 
+        }
+    })
+        .then(res => {
+            return res.json()
+        }).then(data => {
+            users = data;
+            data.forEach(addRow);
+        })
+}
 
-const luogoSistemazione = ["All'aperto", "Al chiuso"]
-var selectSistemazione = document.getElementById("sistemazione");
-
-luogoSistemazione.forEach(function(oggetto) {
-    var option = document.createElement("option");
-    option.value = oggetto;
-    option.text = oggetto;
-    selectSistemazione.appendChild(option);
-});
+showTable()

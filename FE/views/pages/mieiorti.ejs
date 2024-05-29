@@ -108,7 +108,7 @@
             <h1 class="text-4xl text-center mt-5 md:mt-32">La lista dei miei orti</h1>
             <div class="w-[85%] flex justify-end mb-20 md:mb-40">
                 <div class="overflow-x-auto ">
-                    <table class="table">
+                    <table id="ortoTable" class="table">
                         <!-- head -->
                         <thead>
                             <tr class="text-xl text-blue-950">
@@ -121,7 +121,7 @@
                         </thead>
                         <tbody>
                             <!-- row 1 -->
-                            <tr class="clickable" onclick="window.location='/home'">
+                            <!-- <tr class="clickable" onclick="window.location='/home'">
                                 <td>
                                     <div class="flex items-center gap-3">
                                         <div class="avatar">
@@ -147,7 +147,7 @@
                                     <button class="btn btn-ghost btn-xs"><a href="/profilo">Dettagli</a></button>
                                     <button class="btn btn-ghost btn-xs">Pianifica</button>
                                 </th>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -160,6 +160,7 @@
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
                     <script src="/scripts/mieiorti.js"></script>
+                    <script src="/scripts/mieiortiForm.js"></script>
 </body>
 
 </html>

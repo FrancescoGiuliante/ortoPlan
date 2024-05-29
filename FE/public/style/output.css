@@ -3862,8 +3862,8 @@ html:has(.drawer-toggle:checked) {
   width: 20rem;
 }
 
-.w-\[140px\] {
-  width: 140px;
+.w-\[100px\] {
+  width: 100px;
 }
 
 .w-\[300px\] {
@@ -3886,12 +3886,8 @@ html:has(.drawer-toggle:checked) {
   width: 100%;
 }
 
-.w-\[\] {
-  width: ;
-}
-
-.w-\[100px\] {
-  width: 100px;
+.w-1\/2 {
+  width: 50%;
 }
 
 .max-w-6xl {
@@ -3997,6 +3993,14 @@ html:has(.drawer-toggle:checked) {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-20 {
+  gap: 5rem;
 }
 
 .overflow-hidden {
@@ -4502,6 +4506,11 @@ html:has(.drawer-toggle:checked) {
   color: rgb(133 77 14 / var(--tw-text-opacity));
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -4753,6 +4762,10 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
     width: 13rem;
   }
 
+  .md\:w-\[140px\] {
+    width: 140px;
+  }
+
   .md\:w-\[50\%\] {
     width: 50%;
   }
@@ -4767,10 +4780,6 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
 
   .md\:w-\[94\%\] {
     width: 94%;
-  }
-
-  .md\:w-\[140px\] {
-    width: 140px;
   }
 
   .md\:max-w-5xl {

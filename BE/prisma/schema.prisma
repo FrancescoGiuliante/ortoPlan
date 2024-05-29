@@ -48,7 +48,7 @@ model MyOrto {
   citta           String
   tipoPiantagione String
   numeroPiante    Int
-  dataSemina      DateTime
+  dataSemina      String @db.VarChar(10)
   sistemazione    String
   userId          Int
   user            User      @relation(fields: [userId], references: [id])

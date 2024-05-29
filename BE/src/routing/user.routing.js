@@ -61,6 +61,38 @@ export default function userRouting(app) {
 
     })
 
+    // metodo http POST creazione orto
+    app.post('/orto', async (req, res) => {
+        const newOrto = await prisma.myOrto.create({
+            data: {
+                nome: req.body.nome,
+                citta: req.body.citta,
+                tipoPiantagione: req.body.tipoPiantagione,
+                numeroPiante: req.body.numeroPiante,
+                dataSemina: req.body.dataSemina,
+                sistemazione: req.body.sistemazione,
+                userId: req.body.userId,
+
+            }
+        })
+        res.status(201);
+        res.json(newOrto);
+
+    })
+
+    app.post('/myorto', async (req, res) => {
+        const { userId } = req.body;
+
+        if (!userId) {
+            return res.status(400).json({ error: 'Missing userId' });
+        }
+        const orto = await prisma.myOrto.findMany({
+            where: {
+                userId: userId
+            }
+        });
+        res.json(orto);
+    });
 
     // metodo http POST
     app.post('/users', createUserValidation, async (req, res) => {
@@ -79,7 +111,7 @@ export default function userRouting(app) {
         })
 
         res.status(201);
-        res.json({newUser, newUserCredential});
+        res.json({ newUser, newUserCredential });
 
     })
 

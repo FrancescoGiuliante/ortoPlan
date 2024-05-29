@@ -16,23 +16,29 @@
         <div class="text-xl mt-7 text-[#fe3d52]">Benvenuto <span id="user">Loading ...</span></div>
         <div><img src="/assets/OIG4 (1).jpeg" class="h-20" alt=""></div>
       </div>
-      
+
       <div class="ml-[1050px]">
         <div class="hero ">
           <div class="hero-content text-center w-3/4 rounded-full border-[14px] border-[#003b15]">
-            
+
           </div>
         </div>
         <div class="flex justify-center w-full -mt-36 mb-20">
           <img src="/assets/pokeball_verde_png.png" class="h-80 rotate-180 -z-10 " alt="">
         </div>
       </div>
- 
+      <div class="flex w-1/2 justify-center mx-auto">
+        <h1 class="text-black">Weather App</h1>
+        <input id="cityInput" placeholder="Enter city" type="text" class="input input-bordered w-full bg-white">
+        <button onclick="getWeather()">Get Weather</button>
+        <div class="weather-info" id="weatherInfo"></div>
+      </div>
 
 
       <%- include('partials/footer') %>
         <%- include('partials/drawer_content') %>
           <script src="/scripts/home.js"></script>
+          <script src="/scripts/weatherAPI.js"></script>
 </body>
 
 </html>
