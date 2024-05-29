@@ -80,7 +80,23 @@ export default function userRouting(app) {
 
     })
 
-    app.post('/myorto', async (req, res) => {
+    // metodo http POST creazione pianificazione
+    app.post('/pianificazione', isLoggedIn, async (req, res) => {
+        
+        const newPianificazione = await prisma.pianificazioni.create({
+            data: {
+                data: req.body.data,
+                attivita: req.body.attivita,
+                completata: req.body.completata,
+                myOrtoId: req.body.myOrtoId,
+            }
+        })
+        res.status(201);
+        res.json(newPianificazione);
+
+    })
+
+    app.post('/myorto', isLoggedIn, async (req, res) => {
         const { userId } = req.body;
 
         if (!userId) {
@@ -93,6 +109,7 @@ export default function userRouting(app) {
         });
         res.json(orto);
     });
+
 
     // metodo http POST
     app.post('/users', createUserValidation, async (req, res) => {

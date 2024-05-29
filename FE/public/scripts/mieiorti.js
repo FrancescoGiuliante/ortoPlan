@@ -1,4 +1,7 @@
 const ortoTableBody = document.querySelector('#ortoTable tbody')
+const userString = localStorage.getItem('user');
+const userStorage = JSON.parse(userString);
+userId = userStorage['id']
 
 function addRow(orto) {
     const tr = document.createElement('tr');
@@ -13,13 +16,9 @@ function addRow(orto) {
 }
 
 function showTable() {
-    const userString = localStorage.getItem('user');
-    const userStorage = JSON.parse(userString);
-    userId = userStorage['id']
-    let child = ortoTableBody.lastElementChild
-    while (child) {
-        console.log(child)
-        ortoTableBody.removeChild(child)
+    
+    while (ortoTableBody.firstChild) {
+        ortoTableBody.removeChild(ortoTableBody.firstChild);
     }
 
     fetch('http://localhost:8000/myOrto', {
@@ -41,3 +40,4 @@ function showTable() {
 }
 
 showTable()
+window.showTable = showTable;
