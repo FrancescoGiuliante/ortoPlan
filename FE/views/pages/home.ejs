@@ -30,9 +30,16 @@
       <div class="flex w-1/2 justify-center mx-auto">
         <h1 class="text-black">Weather App</h1>
         <input id="cityInput" placeholder="Enter city" type="text" class="input input-bordered w-full bg-white">
-        <button onclick="getWeather()">Get Weather</button>
+        <button onclick="getWeatherNow()">Get Weather</button>
         <div class="weather-info" id="weatherInfo"></div>
       </div>
+      <div class="flex w-1/2 justify-center mx-auto">
+        <h1 class="text-black">Weather App</h1>
+        <input id="cityInputFour" placeholder="Enter city" type="text" class="input input-bordered w-full bg-white">
+        <button onclick="getWeatherFour()">Get Weather four</button>
+        <div class="weather-info" id="weatherInfoFour"></div>
+      </div>
+
 
 
       <%- include('partials/footer') %>

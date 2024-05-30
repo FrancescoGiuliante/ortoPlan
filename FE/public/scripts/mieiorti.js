@@ -40,4 +40,3 @@ function showTable() {
 }
 
 showTable()
-window.showTable = showTable;

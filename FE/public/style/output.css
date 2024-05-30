@@ -3711,10 +3711,6 @@ html:has(.drawer-toggle:checked) {
   display: none;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
 .h-12 {
   height: 3rem;
 }
@@ -3807,10 +3803,6 @@ html:has(.drawer-toggle:checked) {
   width: 50%;
 }
 
-.w-10 {
-  width: 2.5rem;
-}
-
 .w-3\/4 {
   width: 75%;
 }
@@ -3847,8 +3839,8 @@ html:has(.drawer-toggle:checked) {
   width: 2rem;
 }
 
-.w-80 {
-  width: 20rem;
+.w-\[1000px\] {
+  width: 1000px;
 }
 
 .w-\[100px\] {
@@ -3875,16 +3867,24 @@ html:has(.drawer-toggle:checked) {
   width: 100%;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
+.w-\[2000px\] {
+  width: 2000px;
+}
+
+.w-\[3000px\] {
+  width: 3000px;
+}
+
 .max-w-6xl {
   max-width: 72rem;
 }
 
 .max-w-md {
   max-width: 28rem;
-}
-
-.max-w-xl {
-  max-width: 36rem;
 }
 
 .shrink-0 {
@@ -3926,6 +3926,10 @@ html:has(.drawer-toggle:checked) {
 
 .grid-flow-col {
   grid-auto-flow: column;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -3974,6 +3978,10 @@ html:has(.drawer-toggle:checked) {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .overflow-hidden {
@@ -4214,6 +4222,10 @@ html:has(.drawer-toggle:checked) {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-1 {
@@ -4561,6 +4573,40 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
   font-weight: 300;
 }
 
+@media (min-width: 768px) {
+  .md\:card-side {
+    align-items: stretch;
+    flex-direction: row;
+  }
+
+  .md\:card-side :where(figure:first-child) {
+    overflow: hidden;
+    border-start-start-radius: inherit;
+    border-start-end-radius: unset;
+    border-end-start-radius: inherit;
+    border-end-end-radius: unset;
+  }
+
+  .md\:card-side :where(figure:last-child) {
+    overflow: hidden;
+    border-start-start-radius: unset;
+    border-start-end-radius: inherit;
+    border-end-start-radius: unset;
+    border-end-end-radius: inherit;
+  }
+
+  .md\:card-side figure > * {
+    max-width: unset;
+  }
+
+  :where(.md\:card-side figure > *) {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
 .hover\:border-2:hover {
   border-width: 2px;
 }
@@ -4678,6 +4724,10 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
     display: none;
   }
 
+  .md\:h-10 {
+    height: 2.5rem;
+  }
+
   .md\:h-20 {
     height: 5rem;
   }
@@ -4702,12 +4752,20 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
     height: 24rem;
   }
 
+  .md\:h-48 {
+    height: 12rem;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
 
   .md\:w-1\/4 {
     width: 25%;
+  }
+
+  .md\:w-10 {
+    width: 2.5rem;
   }
 
   .md\:w-2\/3 {
@@ -4746,8 +4804,20 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
     width: 94%;
   }
 
+  .md\:w-\[2000px\] {
+    width: 2000px;
+  }
+
+  .md\:w-\[1000px\] {
+    width: 1000px;
+  }
+
   .md\:max-w-5xl {
     max-width: 64rem;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -4776,6 +4846,10 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
 
   .md\:border-\[30px\] {
     border-width: 30px;
+  }
+
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:text-center {

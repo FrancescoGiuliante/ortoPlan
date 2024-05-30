@@ -26,7 +26,7 @@
 						<p>Clicca sul numero di un giorno nel calendario per pianificare un evento in quella data!</p>
 					</div>
 				</div>
-				<img src="/assets/poke_png.png" class="h-16 md:h-20" alt="">
+				<img src="/assets/poke_png.png" class="hidden md:flex h-16 md:h-20" alt="">
 			</div>
 
 
@@ -141,11 +141,11 @@
 
 						<!-- Modal -->
 						<div style=" background-color: rgba(0, 0, 0, 0.8)"
-							class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-full"
+							class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-screen"
 							x-show.transition.opacity="openEventModal">
-							<div class="p-4 max-w-xl mx-auto  absolute left-0 right-0 overflow-hidden mt-6 md:mt-24">
+							<div class="p-0 md:p-4 w-[90%] md:w-2/3 mx-auto  absolute left-0 right-0 overflow-hidden md:mt-24">
 
-								<div class="shadow absolute right-0 top-0 w-10 h-10 rounded-full bg-white text-gray-500 hover:text-gray-800 inline-flex items-center justify-center cursor-pointer"
+								<div class="shadow absolute right-0 top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-gray-500 hover:text-gray-800 inline-flex items-center justify-center cursor-pointer"
 									x-on:click="openEventModal = !openEventModal">
 									<svg class="fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 24 24">
@@ -153,92 +153,126 @@
 											d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z" />
 									</svg>
 								</div>
-								<button onclick="logSelectedDate()"
+								<!-- <button onclick="logSelectedDate()"
 									class="btn text-[#174a29] bg-[#90ee90] hover:border-2 font-light hover:bg-white hover:border-[#fe3d52]">Vai
-									alle pianificazioni del giorno</button>
-
-								<div class="shadow w-full rounded-lg bg-white overflow-hidden  block p-8">
-
-									<div class=" flex w-full justify-between">
-										<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Aggiungi
-											evento
-										</h2>
-										<!-- <img src="/assets/contadina.png" class="h-40" alt=""> -->
-
+									alle pianificazioni del giorno</button> -->
+								<div class="flex flex-col gap-2 md:gap-0 md:flex-row mt-10 w-full">
+									<div class="shadow w-full rounded-lg bg-white block p-8">
+										<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Pianificazioni del giorno</h2>
+										<div class="overflow-x-auto">
+											<table class="table">
+											  <!-- head -->
+											  <thead>
+												<tr>
+												  <th></th>
+												  <th>Name</th>
+												  <th>Job</th>
+												  <th>Favorite Color</th>
+												</tr>
+											  </thead>
+											  <tbody>
+												<!-- row 1 -->
+												<tr>
+												  <th>1</th>
+												  <td>Cy Ganderton</td>
+												  <td>Quality Control Specialist</td>
+												  <td>Blue</td>
+												</tr>
+												<!-- row 2 -->
+												<tr>
+												  <th>2</th>
+												  <td>Hart Hagerty</td>
+												  <td>Desktop Support Technician</td>
+												  <td>Purple</td>
+												</tr>
+											  </tbody>
+											</table>
+										  </div>
 									</div>
-									<form id="pianificazioneForm">
-										<div class="mb-4">
-											<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Orto
-												da
-												lavorare</label>
-											<select id="nomeOrto" name="nomeOrto"
-												class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"></select>
+									<div class="shadow w-full rounded-lg bg-white overflow-hidden  block p-8">
+										<div class=" flex w-full justify-between">
+											<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Aggiungi
+												evento
+											</h2>
+											<!-- <img src="/assets/contadina.png" class="h-40" alt=""> -->
+	
 										</div>
-
-										<div class="mb-4">
-											<label
-												class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Titolo
-												evento</label>
-											<input
-												class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-												type="text" x-model="event_title">
-										</div>
-
-										<div class="mb-4">
-											<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Data
-												evento</label>
-											<input id="selectedDateInput"
-												class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-												type="text" x-model="event_date" readonly>
-										</div>
-
-										<div class="flex justify-between">
-											<!-- <div class="inline-block w-64 mb-4">
-											<label
-												class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Seleziona
-												un colore</label>
-											<div class="relative">
-												<select @change="event_theme = $event.target.value;"
-													x-model="event_theme"
-													class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
-													<template x-for="(theme, index) in themes">
-														<option :value="theme.value" x-text="theme.label"></option>
-													</template>
-
-												</select>
-												<div
-													class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-													<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-														viewBox="0 0 20 20">
-														<path
-															d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-													</svg>
+										<form id="pianificazioneForm">
+											<div class="mb-4">
+												<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Orto
+													da
+													lavorare</label>
+												<select id="nomeOrto" name="nomeOrto"
+													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"></select>
+											</div>
+	
+											<div class="mb-4">
+												<label
+													class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Titolo
+													evento</label>
+												<input
+													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+													type="text" x-model="event_title">
+											</div>
+	
+											<div class="mb-4">
+												<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Data
+													evento</label>
+												<input id="selectedDateInput"
+													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+													type="text" x-model="event_date" readonly>
+											</div>
+	
+											<div class="flex justify-between">
+												<!-- <div class="inline-block w-64 mb-4">
+												<label
+													class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Seleziona
+													un colore</label>
+												<div class="relative">
+													<select @change="event_theme = $event.target.value;"
+														x-model="event_theme"
+														class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
+														<template x-for="(theme, index) in themes">
+															<option :value="theme.value" x-text="theme.label"></option>
+														</template>
+	
+													</select>
+													<div
+														class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+														<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+															viewBox="0 0 20 20">
+															<path
+																d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+														</svg>
+													</div>
 												</div>
+											</div> -->
+												<div class="form-control">
+													<label class="cursor-pointer label">
+														<span class="label-text">Abilita notifiche</span>
+														<input type="checkbox" checked="checked"
+															class="checkbox checkbox-success ml-8" />
+													</label>
+												</div>
+												<img src="/assets/contadina.png" class="h-40 ml-[66px] md:ml-0" alt="">
 											</div>
-										</div> -->
-											<div class="form-control">
-												<label class="cursor-pointer label">
-													<span class="label-text">Abilita notifiche</span>
-													<input type="checkbox" checked="checked"
-														class="checkbox checkbox-success ml-8" />
-												</label>
+											<div class="-mt-16 text-left">
+												<button type="button"
+													class="hover:bg-white bg-[#fe3d52] border-[#fe3d52] font-light py-2 px-4 border rounded-lg shadow-sm mr-2"
+													@click="openEventModal = !openEventModal">
+													Chiudi
+												</button>
+												<button type="submit" 
+													class="hover:bg-white bg-[#90ee90] font-light py-2 px-4 border border-[#90ee90] rounded-lg shadow-sm"
+													@click="addEvent()">
+													Salva evento
+												</button>
 											</div>
-											<img src="/assets/contadina.png" class="h-40 ml-[66px] md:ml-0" alt="">
-										</div>
-										<div class="-mt-16 text-left">
-											<button type="button"
-												class="hover:bg-white bg-[#fe3d52] border-[#fe3d52] font-light py-2 px-4 border rounded-lg shadow-sm mr-2"
-												@click="openEventModal = !openEventModal">
-												Chiudi
-											</button>
-											<button type="submit" 
-												class="hover:bg-white bg-[#90ee90] font-light py-2 px-4 border border-[#90ee90] rounded-lg shadow-sm"
-												@click="addEvent()">
-												Salva evento
-											</button>
-										</div>
-									</form>
+										</form>
+									</div>
+
 								</div>
+								
 							</div>
 						</div>
 						<!-- /Modal -->
