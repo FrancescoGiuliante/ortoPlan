@@ -81,7 +81,7 @@ export default function userRouting(app) {
     })
 
     // metodo http POST creazione pianificazione
-    app.post('/pianificazione', isLoggedIn, async (req, res) => {       
+    app.post('/pianificazione', isLoggedIn, async (req, res) => {
         const newPianificazione = await prisma.pianificazioni.create({
             data: {
                 data: req.body.data,
@@ -110,19 +110,33 @@ export default function userRouting(app) {
     });
 
     app.post('/mypianificazioni', isLoggedIn, async (req, res) => {
-        const { userId } = req.body;
+        const userId = req.body.userId;
+        const data = req.body.data;
 
         if (!userId) {
             return res.status(400).json({ error: 'Missing userId' });
         }
-        const pianificazioni = await prisma.pianificazioni.findMany({
+        const orto = await prisma.myOrto.findMany({
             where: {
                 userId: userId
             }
         });
-        res.json(orto);
-    });
 
+        const pianificazioni = await prisma.pianificazioni.findMany({
+            where: {
+                myOrto: {
+                    userId: userId
+                },
+                data: data
+            },
+            include: {
+                myOrto: true
+            }
+        });
+
+        res.json({pianificazioni, orto});
+
+    });
 
     // metodo http POST
     app.post('/users', createUserValidation, async (req, res) => {

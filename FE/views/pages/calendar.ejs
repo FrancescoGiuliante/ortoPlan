@@ -60,7 +60,7 @@
 								<div class="flex items-center justify-between py-2 px-6">
 									<div>
 										<span x-text="MONTH_NAMES[month]"
-											class="text-lg font-bold text-blue-950"></span>
+											class="text-lg font-light text-blue-950"></span>
 										<span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
 									</div>
 									<div class="border rounded-lg px-1" style="padding-top: 2px;">
@@ -93,7 +93,7 @@
 										<template x-for="(day, index) in DAYS" :key="index">
 											<div style="width: 14.26%" class="px-2 py-2">
 												<div x-text="day"
-													class="text-blue-950 text-sm uppercase tracking-wide font-bold text-center">
+													class="text-blue-950 text-sm uppercase tracking-wide font-light text-center">
 												</div>
 											</div>
 										</template>
@@ -107,8 +107,8 @@
 										<template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
 											<div style="width: 14.28%; height: 120px"
 												class="px-4 pt-2 border-r border-b relative">
-												<div @click="showEventModal(date)" x-text="date"
-													class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
+												<div @click="showEventModal(date)" x-text="date" name="dateButton"
+													class="inline-flex w-8 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
 													:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }">
 												</div>
 												<div style="height: 80px;" class="overflow-y-auto mt-1">
@@ -143,7 +143,8 @@
 						<div style=" background-color: rgba(0, 0, 0, 0.8)"
 							class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-screen"
 							x-show.transition.opacity="openEventModal">
-							<div class="p-0 md:p-4 w-[90%] md:w-2/3 mx-auto  absolute left-0 right-0 overflow-hidden md:mt-24">
+							<div
+								class="p-0 md:p-4 w-[90%] md:w-2/3 mx-auto  absolute left-0 right-0 overflow-hidden md:mt-24">
 
 								<div class="shadow absolute right-0 top-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-gray-500 hover:text-gray-800 inline-flex items-center justify-center cursor-pointer"
 									x-on:click="openEventModal = !openEventModal">
@@ -153,41 +154,28 @@
 											d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z" />
 									</svg>
 								</div>
-								<!-- <button onclick="logSelectedDate()"
-									class="btn text-[#174a29] bg-[#90ee90] hover:border-2 font-light hover:bg-white hover:border-[#fe3d52]">Vai
-									alle pianificazioni del giorno</button> -->
+
 								<div class="flex flex-col gap-2 md:gap-0 md:flex-row mt-10 w-full">
 									<div class="shadow w-full rounded-lg bg-white block p-8">
-										<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Pianificazioni del giorno</h2>
+										<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Pianificazioni
+											del giorno</h2>
+										<!-- <button onclick="logSelectedDate()"
+											class="btn text-[#174a29] bg-[#90ee90] hover:border-2 font-light hover:bg-white hover:border-[#fe3d52]">Vai
+											alle pianificazioni del giorno</button> -->
 										<div class="overflow-x-auto">
-											<table class="table">
-											  <!-- head -->
-											  <thead>
-												<tr>
-												  <th></th>
-												  <th>Name</th>
-												  <th>Job</th>
-												  <th>Favorite Color</th>
-												</tr>
-											  </thead>
-											  <tbody>
-												<!-- row 1 -->
-												<tr>
-												  <th>1</th>
-												  <td>Cy Ganderton</td>
-												  <td>Quality Control Specialist</td>
-												  <td>Blue</td>
-												</tr>
-												<!-- row 2 -->
-												<tr>
-												  <th>2</th>
-												  <td>Hart Hagerty</td>
-												  <td>Desktop Support Technician</td>
-												  <td>Purple</td>
-												</tr>
-											  </tbody>
+											<table class="table" id="tablePianificazioni">
+												<!-- head -->
+												<thead>
+													<tr>
+														<th>Nome orto</th>
+														<th>Attività</th>
+														<th>Completata</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
 											</table>
-										  </div>
+										</div>
 									</div>
 									<div class="shadow w-full rounded-lg bg-white overflow-hidden  block p-8">
 										<div class=" flex w-full justify-between">
@@ -195,34 +183,36 @@
 												evento
 											</h2>
 											<!-- <img src="/assets/contadina.png" class="h-40" alt=""> -->
-	
+
 										</div>
 										<form id="pianificazioneForm">
 											<div class="mb-4">
-												<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Orto
+												<label
+													class="text-gray-800 block mb-1 font-light text-sm tracking-wide">Orto
 													da
 													lavorare</label>
 												<select id="nomeOrto" name="nomeOrto"
 													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"></select>
 											</div>
-	
+
 											<div class="mb-4">
 												<label
-													class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Titolo
+													class="text-gray-800 block mb-1 font-light text-sm tracking-wide">Titolo
 													evento</label>
 												<input
 													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-													type="text" x-model="event_title">
+													type="text" x-model="event_title" required>
 											</div>
-	
+
 											<div class="mb-4">
-												<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Data
+												<label
+													class="text-gray-800 block mb-1 font-light text-sm tracking-wide">Data
 													evento</label>
 												<input id="selectedDateInput"
 													class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
 													type="text" x-model="event_date" readonly>
 											</div>
-	
+
 											<div class="flex justify-between">
 												<!-- <div class="inline-block w-64 mb-4">
 												<label
@@ -262,7 +252,7 @@
 													@click="openEventModal = !openEventModal">
 													Chiudi
 												</button>
-												<button type="submit" 
+												<button type="submit"
 													class="hover:bg-white bg-[#90ee90] font-light py-2 px-4 border border-[#90ee90] rounded-lg shadow-sm"
 													@click="addEvent()">
 													Salva evento
@@ -272,7 +262,7 @@
 									</div>
 
 								</div>
-								
+
 							</div>
 						</div>
 						<!-- /Modal -->
@@ -314,12 +304,14 @@
 
 
 					function app() {
+						let dataSelezionate;
 						return {
 							month: '',
 							year: '',
 							no_of_days: [],
 							blankdays: [],
 							days: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+							dataSelezionata: '',
 
 
 							events: [
@@ -389,7 +381,56 @@
 								// open the modal
 								this.openEventModal = true;
 								this.event_date = new Date(this.year, this.month, date).toDateString();
-								// updateInputDate();
+
+								const userString = localStorage.getItem('user');
+								const userStorage = JSON.parse(userString);
+								const userId = +userStorage['id']
+
+								const data = convertDateFormat(this.event_date)
+								console.log(typeof data);
+								console.log(data, userId);
+								fetch('http://localhost:8000/mypianificazioni', {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json',
+										Authorization: 'Bearer ' + localStorage.getItem('token')
+									},
+									body: JSON.stringify({ userId: userId, data: data })
+								})
+									.then(response => {
+										if (!response.ok) {
+											throw new Error('Network response was not ok');
+										}
+										return response.json();
+									})
+									.then(data => {
+										console.log('Pianificazioni:', data);
+										const tableBody = document.querySelector('#tablePianificazioni tbody');
+										tableBody.innerHTML = '';
+
+										const ortoMap = {};
+										data.orto.forEach(orto => {
+											ortoMap[orto.id] = orto.nome;
+										});
+
+										data.pianificazioni.forEach(pianificazione => {
+											const row = document.createElement('tr');
+
+											const ortoNameRow = document.createElement('td');
+											ortoNameRow.textContent = ortoMap[pianificazione.myOrtoId];
+											row.appendChild(ortoNameRow);
+
+											const attivitaRow = document.createElement('td');
+											attivitaRow.textContent = pianificazione.attivita;
+											row.appendChild(attivitaRow);
+
+											const completataRow = document.createElement('td');
+											completataRow.textContent = pianificazione.completata ? 'Si' : 'No';
+											row.appendChild(completataRow);
+
+											tableBody.appendChild(row);
+										});
+									})
 							},
 
 							addEvent() {
@@ -403,7 +444,6 @@
 									event_theme: this.event_theme
 								});
 
-								console.log(this.events);
 
 								// clear the form data
 								this.event_title = '';
@@ -435,22 +475,12 @@
 						}
 					}
 
-					function logSelectedDate() {
-						const selectedDate = document.getElementById('selectedDateInput').value;
-						console.log(selectedDate);
-						const formattedDate = convertDateFormat(selectedDate);
-						console.log(formattedDate);
-					}
-
-					// function updateInputDate() {
-					// 	const inputElement = document.getElementById('selectedDateInput');
-					// 	const currentDate = inputElement.value;
-					// 	console.log(currentDate);
-					// 	const formattedDate = convertDateFormat(currentDate);
-					// 	inputElement.value = formattedDate;
-					// 	console.log(inputElement.value);
+					// function logSelectedDate() {
+					// 	const selectedDate = document.getElementById('selectedDateInput').value;
+					// 	console.log(selectedDate);
+					// 	const formattedDate = convertDateFormat(selectedDate);
+					// 	console.log(formattedDate);
 					// }
-
 				</script>
 				<script src="/scripts/formCalendario.js"></script>
 				<script></script>
