@@ -23,6 +23,15 @@ body {
     background-size: 180px;
 }
 
+.bg-carta {
+    background-image: url(/assets/carta.png);
+    background-repeat: no-repeat;
+}
+
 div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, textarea, select {
     font-weight: 300;
 }
+
+.card img {
+    opacity: 1; 
+  }

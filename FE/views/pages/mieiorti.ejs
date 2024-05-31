@@ -24,7 +24,7 @@
                         <!-- modal crea nuovo orto -->
                         <div class="w-full justify-center flex">
                             <button
-                                class="btn bg-[#90ee90] hover:bg-white hover:border-2 mt-6  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]"
+                                class="btn bg-[#90ee90] hover:bg-white hover:border-2 mt-6 font-light text-xl mb-8 md:mb-0 hover:border-[#90ee90] w-[300px]"
                                 onclick="myModal.showModal()">Crea orto</button>
 
                         </div>
@@ -39,7 +39,7 @@
                                                     <span class="label-text">Nome</span>
                                                 </label>
                                                 <input type="text" name="nome" placeholder="nome"
-                                                    class="input input-bordered border-2 border-blue-400" required/>
+                                                    class="input input-bordered border-2 border-blue-400" required />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
@@ -63,7 +63,8 @@
                                                             <span class="label-text">Numero di piantine</span>
                                                         </label>
                                                         <input type="number" name="numeroPiante" placeholder="Numero"
-                                                            class="input input-bordered border-2 w-[100px] md:w-[140px]  border-blue-400" required/>
+                                                            class="input input-bordered border-2 w-[100px] md:w-[140px]  border-blue-400"
+                                                            required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,12 +105,12 @@
                 </div>
             </div>
 
-
-            <h1 class="text-4xl text-center mt-5 md:mt-32">La lista dei miei orti</h1>
+            <!-- 
+            <h1 class="text-4xl text-center mt-5 md:mt-32">I miei orti</h1>
             <div class="w-[85%] flex justify-end mb-20 md:mb-40">
                 <div class="overflow-x-auto ">
                     <table id="ortoTable" class="table">
-                        <!-- head -->
+                        
                         <thead>
                             <tr class="text-xl text-blue-950">
                                 <th>Nome orto</th>
@@ -123,8 +124,42 @@
                         </tbody>
                     </table>
                 </div>
-
+            </div> -->
+            <h1 class="text-4xl text-center mt-5 md:mt-10 mb-20">I miei orti</h1>
+            <div id="card-template" class="flex justify-center " style="display: none;">
+                <div class="card w-72 shadow-xl">
+                    <figure class="">
+                        <img src="/assets/carta2.png" alt="Card" />
+                    </figure>
+                    <div class="card-body -mt-48">
+                        <div class="flex justify-between -mt-[225px]">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <h2 name="numero" class="card-title font-light">3</h2>
+                            </div>
+                            <h2 name="nome" class="card-title font-light ">Nome orto</h2>
+                            <div></div>
+                            
+                        </div>
+                        <div class="flex justify-center">
+                            <img name="img" src="/assets/pomodoro_png.png" class="h-40" alt="">
+                        </div>
+                        <div class="mt-2 ml-4  flex justify-center ">
+                            <ul class="list-disc">
+                                <li name="tipo">Tipo di coltivazione</li>
+                                <li name="evento">Prossimo evento pianificato</li>
+                                <li name="meteo">Meteo attuale</li>
+                            </ul>
+                        </div>
+                        <div class="h-2">
+                            <button class="btn w-full bg-white font-light text-xl hover:bg-[#93d051] border-4 border-[#fcce19]"><a href="/home">Controlla orto</a></button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="w-full flex justify-center">
+                <div id="cards-container" class="grid md:grid-cols-2 gap-20 md:gap-20 justify-items-center mb-20"></div>
+            </div>
+            
 
 
 

@@ -19,6 +19,10 @@ app.get('/info_ortaggi', (req, res) => {
     res.render('pages/info_ortaggi');
 })
 
+app.get('/info', (req, res) => {
+    res.render('pages/info');
+})
+
 app.get('/glossario', (req, res) => {
     res.render('pages/glossario');
 })

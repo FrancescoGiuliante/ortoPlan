@@ -135,7 +135,32 @@ export default function userRouting(app) {
         });
 
         res.json({pianificazioni, orto});
+    });
 
+    app.post('/mypianificazioniAll', isLoggedIn, async (req, res) => {
+        const userId = req.body.userId;
+
+        if (!userId) {
+            return res.status(400).json({ error: 'Missing userId' });
+        }
+        const orto = await prisma.myOrto.findMany({
+            where: {
+                userId: userId
+            }
+        });
+
+        const pianificazioni = await prisma.pianificazioni.findMany({
+            where: {
+                myOrto: {
+                    userId: userId
+                },
+            },
+            include: {
+                myOrto: true
+            }
+        });
+
+        res.json({pianificazioni, orto});
     });
 
     // metodo http POST

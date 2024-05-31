@@ -11,30 +11,54 @@
 <body>
 	<%- include('partials/navbar') %>
 		<%- include('partials/menu') %>
-			<div class="w-full flex justify-center gap-2 items-center">
+			<div class="w-full flex justify-center gap-2 -mb-10 items-center">
 
 				<h1 class="text-4xl text-center text-[#fe3d52] mt-10">Calendario</h1>
 				<img src="/assets/calendariobulba.png" class="h-28 md:h-40" alt="">
 			</div>
 
 			<div class="flex w-full md:w-4/5 mt-20 justify-center md:justify-end">
-				<div tabindex="0" class=" md:w-1/4 collapse collapse-arrow border-4 border-[#90ee90]">
+				<div tabindex="0" class=" md:w-1/4 collapse collapse-arrow border-y-8 border-[#90ee90]">
 					<div class="collapse-title text-[#fe3d52] md:text-[16px] font-medium">
 						Come usare il calendario
 					</div>
 					<div class="collapse-content">
-						<p>Clicca sul numero di un giorno nel calendario per pianificare un evento in quella data!</p>
+						<p>Clicca sul numero di un giorno nel calendario per monitorare o pianificare un evento in
+							quella data!</p>
 					</div>
 				</div>
 				<img src="/assets/poke_png.png" class="hidden md:flex h-16 md:h-20" alt="">
 			</div>
-
+			<div class="flex justify-center mx-4 md:mx-0 md:justify-end md:mr-20 mb-10 md:-mb-32">
+				<div class="flex-col md:flex-col gap-2 mt-4">
+					<div class="flex md:flex-col">
+						<div class="flex items-center">
+							<div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+							<span>Attività completata</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+							<span>Attività da completare</span>
+						</div>
+					</div>
+					<div class="flex md:flex-col">
+						<div class="flex items-center ml-10 md:ml-0">
+							<div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+							<span>Attività non completata</span>
+						</div>
+						<div class="flex items-center">
+							<div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+							<span>Attività del giorno<br>da completare</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
 
 
 			<!-- component -->
 			<!-- This is an example component -->
 			<div>
-
 				<link rel="dns-prefetch" href="//unpkg.com" />
 				<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 				<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
@@ -55,7 +79,7 @@
 				Schedule Tasks
 			</div> -->
 
-							<div class="bg-white rounded-lg border-4 border-[#90ee90] shadow overflow-hidden">
+							<div class="bg-white rounded-lg border-x-8 border-[#90ee90] shadow overflow-hidden">
 
 								<div class="flex items-center justify-between py-2 px-6">
 									<div>
@@ -65,7 +89,7 @@
 									</div>
 									<div class="border rounded-lg px-1" style="padding-top: 2px;">
 										<button type="button"
-											class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center"
+											class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-[#90ee90] p-1 items-center"
 											:class="{'cursor-not-allowed opacity-25': month == 0 }"
 											:disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
 											<svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none"
@@ -76,7 +100,7 @@
 										</button>
 										<div class="border-r inline-flex h-6"></div>
 										<button type="button"
-											class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1"
+											class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-[#90ee90] p-1"
 											:class="{'cursor-not-allowed opacity-25': month == 11 }"
 											:disabled="month == 11 ? true : false" @click="month++; getNoOfDays()">
 											<svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none"
@@ -109,7 +133,7 @@
 												class="px-4 pt-2 border-r border-b relative">
 												<div @click="showEventModal(date)" x-text="date" name="dateButton"
 													class="inline-flex w-8 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-													:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }">
+													:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-[#90ee90]': isToday(date) == false }">
 												</div>
 												<div style="height: 80px;" class="overflow-y-auto mt-1">
 													<div class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-[#fe3d52] text-white leading-none"
@@ -313,7 +337,6 @@
 							days: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
 							dataSelezionata: '',
 
-
 							events: [
 								{
 									event_date: new Date(2024, 4, 5),
@@ -331,7 +354,12 @@
 									event_date: new Date(2020, 3, 16),
 									event_title: "Upcoming Event",
 									event_theme: 'green'
-								}
+								},
+								// {
+								// 	event_date: new Date(2024, 5, 1),
+								// 	event_title: 'Nuovo Evento',
+								// 	event_theme: 'purple'
+								// }
 							],
 							event_title: '',
 							event_date: '',
@@ -368,6 +396,7 @@
 								this.month = today.getMonth();
 								this.year = today.getFullYear();
 								this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+								this.fetchEvents();
 							},
 
 							isToday(date) {
@@ -454,6 +483,55 @@
 								this.openEventModal = false;
 							},
 
+							aggiungiEvento(event) {
+								this.events.push(event);
+							},
+
+							fetchEvents() {
+								const userString = localStorage.getItem('user');
+								const userStorage = JSON.parse(userString);
+								const userId = +userStorage['id'];
+
+								fetch('http://localhost:8000/mypianificazioniAll', {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json',
+										Authorization: 'Bearer ' + localStorage.getItem('token')
+									},
+									body: JSON.stringify({ userId: userId })
+								})
+									.then(response => {
+										if (!response.ok) {
+											throw new Error('Network response was not ok');
+										}
+										return response.json();
+									})
+									.then(data => {
+										data.pianificazioni.forEach(pianificazione => {
+											const eventDate = new Date(pianificazione.data);
+											let eventTheme = 'red';
+
+											if (pianificazione.completata) {
+												eventTheme = 'green';
+											} else {
+												const today = new Date();
+												if (eventDate.toDateString() === today.toDateString()) {
+													eventTheme = 'blue';
+												} else {
+													eventTheme = 'yellow';
+												}
+											}
+
+											const newEvent = {
+												event_date: eventDate,
+												event_title: pianificazione.attivita,
+												event_theme: eventTheme
+											};
+
+											this.aggiungiEvento(newEvent);
+										});
+									});
+							},
 							getNoOfDays() {
 								let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
 
@@ -474,17 +552,8 @@
 							}
 						}
 					}
-
-					// function logSelectedDate() {
-					// 	const selectedDate = document.getElementById('selectedDateInput').value;
-					// 	console.log(selectedDate);
-					// 	const formattedDate = convertDateFormat(selectedDate);
-					// 	console.log(formattedDate);
-					// }
 				</script>
 				<script src="/scripts/formCalendario.js"></script>
-				<script></script>
-
 
 
 </body>

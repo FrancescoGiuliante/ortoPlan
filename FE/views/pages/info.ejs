@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style/output.css" rel="stylesheet">
+    <title>Info</title>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <%- include('partials/menu') %>
+            <div class="flex flex-col mx-3 md:mx-0 md:w-full md:flex-row text-center justify-center items-center mt-8">
+                <h1 class="text-[#fe3d52] text-3xl">anche tu come squirtle non hai mai gestito un orto?</h1>
+                <img src="/assets/squirtleDomanda.png" class="h-40" alt="">
+            </div>
+
+            <div class="flex justify-center mr-0 md:mr-[500px] mt-10 md:mt-0">
+                <div class="transform scale-x-[-1] w-full">
+                    <img src="/assets/professore.png" class="h-60 md:h-40" alt="">
+                </div>
+                <div class="chat chat-start w-full">
+                    <div class="chat-bubble chat-bubble-success text-xl text-gray-100">Ci penso io a spiegarti tutto
+                        quello che
+                        c'è da sapere!</div>
+                </div>
+            </div>
+
+
+            
+            <div class="flex justify-center ml-12 md:ml-0">
+                <div class="w-full md:w-[60%]">
+                    <ul class="steps steps-vertical lg:steps-horizontal text-success ">
+                        <li class="step">Preparazione del Terreno</li>
+                        <li class="step ">Semina</li>
+                        <li class="step">Irrigazione</li>
+                        <li class="step">Pacciamatura</li>
+                        <li class="step">Gestione integrata delle piante</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- prima grid -->
+            <div class="grid md:grid-cols-2 md:flex justify-center mt-20 gap-8">
+                <div class="card w-96 bg-base-100 shadow-xl border-x-8 md:border-x-0 md:border-l-8 border-[#90ee90]">
+                    <figure class="px-10 pt-10">
+                        <img src="/assets/preparazione.png" alt="Shoes" class="rounded-xl h-40" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h1 class="text-[#fe3d52] text-2xl mb-4">1. Preparazione del Terreno</h1>
+                        <div class="flex justify-center mt-4">
+                            <div class="w-full">
+                                <ul class="steps steps-horizontal text-success ">
+                                    <li class="step step-success"></li>
+                                    <li class="step "></li>
+                                    <li class="step"></li>
+                                    <li class="step"></li>
+                                    <li class="step"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-[15px]"><span class="text-success">Descrizione:</span> Inizia con la <span
+                                class="text-[#fe3d52]">coltivazione</span> del terreno,
+                            rimuovendo le erbacce e arricchendolo con <span class="text-[#fe3d52]">compost</span>.
+                            Questo
+                            migliora la struttura e la fertilità del suolo, essenziale per la crescita delle piante.</p>
+                    </div>
+                </div>
+                <div class="card w-96 bg-base-100 shadow-xl border-x-8 md:border-x-0 md:border-r-8 border-[#90ee90]">
+                    <figure class="px-10 pt-10">
+                        <img src="/assets/semina.png" alt="Shoes" class="rounded-xl h-40" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h1 class="text-[#fe3d52] text-2xl mb-12">2. Semina</h1>
+                        <div class="flex justify-center mt-0 md:mt-4">
+                            <div class="w-full">
+                                <ul class="steps steps-horizontal text-success ">
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step"></li>
+                                    <li class="step"></li>
+                                    <li class="step"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-[15px]"><span class="text-success">Descrizione:</span> Procedi con la <span
+                                class="text-[#fe3d52]">semina</span> dei semi nel terreno preparato. Segui le
+                            indicazioni specifiche per ogni tipo di pianta riguardo alla profondità di semina e alla
+                            distanza tra i semi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- seconda grid -->
+            <div class="flex justify-center mt-5 gap-8">
+                <div class="card w-96 bg-base-100 shadow-xl border-x-8 border-[#90ee90]">
+                    <figure class="px-10 pt-10">
+                        <img src="/assets/irrigazione.png" alt="Shoes" class="rounded-xl h-40" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h1 class="text-[#fe3d52] text-2xl mb-4">3. Irrigazione</h1>
+                        <div class="flex justify-center mt-4">
+                            <div class="w-full">
+                                <ul class="steps steps-horizontal text-success ">
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step"></li>
+                                    <li class="step"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-[15px]"><span class="text-success">Descrizione:</span>Garantire un'adeguata <span
+                                class="text-[#fe3d52]">irrigazione</span> è cruciale per la salute delle piante.
+                            Assicurati che le piante ricevano acqua in modo regolare e controllato per evitare sia
+                            l'eccesso che la carenza d'acqua.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- terza grid -->
+            <div class="grid md:grid-cols-2 md:flex justify-center mt-5 mb-10 gap-8">
+                <div class="card w-96 bg-base-100 shadow-xl border-x-8 md:border-x-0 md:border-l-8 border-[#90ee90]">
+                    <figure class="px-10 pt-10">
+                        <img src="/assets/pacciamatura.png" alt="Shoes" class="rounded-xl h-40" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h1 class="text-[#fe3d52] text-2xl mb-4">4. Pacciamatura</h1>
+                        <div class="flex justify-center mt-4">
+                            <div class="w-full">
+                                <ul class="steps steps-horizontal text-success ">
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-[15px]"><span class="text-success">Descrizione:</span>La <span
+                                class="text-[#fe3d52]">pacciamatura</span> aiuta a mantenere il terreno umido, ridurre
+                            le erbacce e migliorare la salute generale del suolo. Copri il terreno intorno alle piante
+                            con materiali organici.</p>
+                    </div>
+                </div>
+                <div class="card w-96 bg-base-100 shadow-xl border-x-8 md:border-x-0 md:border-r-8 border-[#90ee90]">
+                    <figure class="px-10 pt-8">
+                        <img src="/assets/raccolta.png" alt="Shoes" class="rounded-xl h-36" />
+                    </figure>
+                    <div class="card-body items-center text-center mt-2">
+                        <h1 class="text-[#fe3d52] text-2xl">5. Gestione Integrata delle Piante</h1>
+                        <div class="flex justify-center mt-4">
+                            <div class="w-full">
+                                <ul class="steps steps-horizontal text-success ">
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                    <li class="step step-success"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-[15px]">
+                            <span class="text-success">Descrizione:</span> Adotta una
+                            <span class="text-[#fe3d52]">gestione integrata delle piante</span> per mantenere il tuo
+                            orto in salute, riducendo l'uso di
+                            <span class="text-[#fe3d52]">pesticidi</span> sintetici e promuovendo una crescita
+                            sostenibile.
+                            Il sito <span class="text-[#fe3d52] text-xl">OrtoPlan</span> ti aiuta nella pianificazione
+                            delle date per l'<span class="text-[#fe3d52]">irrigazione</span>
+                            e nella gestione dei valori chiave degli ortaggi, garantendo il massimo rendimento dal tuo
+                            orto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-full md:w-1/3 justify-center mx-auto">
+                <div class="chat chat-end">
+                    <div class="chat-bubble chat-bubble-success text-xl text-gray-100">
+                        <div class="flex flex-col justify-center items-center">
+                            <p class="p-1 text-center">Le parole chiavi in rosso le puoi trovare nel nostro glossario</p>
+                            <button class="btn w-1/2 bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]"><a href="/glossario">Glossario</a></button> 
+                        </div>
+                    </div>
+                </div>
+                <div class="chat chat-end">
+                    <div class="chat-bubble chat-bubble-success text-xl text-gray-100">
+                        <div class="flex flex-col items-center">
+                            <p class="p-1 text-center">Puoi controllare anche tutto quello che devi sapere sugli ortaggi!</p>
+                            <button class="btn w-1/2 bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]"><a href="/info_ortaggi">Info ortaggi</a></button> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="w-[78%] mb-4 mt-0 md:-mt-20 flex justify-end">
+                <img src="/assets/professore.png" class="h-40" alt="">
+            </div>
+
+
+            <%- include('partials/footer') %>
+                <%- include('partials/drawer_content') %>
+
+</body>
+
+</html>

@@ -78,7 +78,7 @@ ortoForm.addEventListener('submit', async (e) => {
     if (ortoResponse.ok) {
         const ortoData = await ortoResponse.json();
         console.log(ortoData);
-        showTable();
+        fetchAndRenderOrti()
         closeModal();
     } else {
         const errorData = await ortoResponse.json();
