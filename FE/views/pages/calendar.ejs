@@ -51,7 +51,7 @@
 							<span>Attività del giorno<br>da completare</span>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 
@@ -194,6 +194,7 @@
 														<th>Nome orto</th>
 														<th>Attività</th>
 														<th>Completata</th>
+														<th>Azioni</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -363,7 +364,7 @@
 							],
 							event_title: '',
 							event_date: '',
-							event_theme: 'blue',
+							event_theme: 'yellow',
 
 							themes: [
 								{
@@ -418,7 +419,8 @@
 								const data = convertDateFormat(this.event_date)
 								console.log(typeof data);
 								console.log(data, userId);
-								fetch('http://localhost:8000/mypianificazioni', {
+								function renderPianificazioni() {
+									fetch('http://localhost:8000/mypianificazioni', {
 									method: 'POST',
 									headers: {
 										'Content-Type': 'application/json',
@@ -457,9 +459,50 @@
 											completataRow.textContent = pianificazione.completata ? 'Si' : 'No';
 											row.appendChild(completataRow);
 
+											const actionsRow = document.createElement('td');
+											
+											// Pulsante Visualizza
+											const viewButton = document.createElement('button');
+											viewButton.textContent = 'Visualizza';
+											viewButton.className = 'bg-blue-500 font-light hover:bg-white hover:border-2 hover:border-blue-400 p-2 rounded-xl mr-2';
+											viewButton.onclick = () => {
+												window.location.href = `/pianificazione?id=${pianificazione.id}`;
+											};
+											actionsRow.appendChild(viewButton);
+
+											// Pulsante Elimina
+											const deleteButton = document.createElement('button');
+											deleteButton.textContent = 'Elimina';
+											deleteButton.className = 'bg-red-500 font-light hover:bg-white hover:border-2 hover:border-red-400 p-2 rounded-xl';
+											deleteButton.onclick = () => {
+												if (confirm('Sei sicuro di voler eliminare questa pianificazione?')) {
+													fetch(`http://localhost:8000/pianificazione/${pianificazione.id}`, {
+														method: 'DELETE',
+														headers: {
+															'Content-Type': 'application/json',
+															Authorization: 'Bearer ' + localStorage.getItem('token')
+														}
+													})
+														.then(res => {
+															if (!res.ok) {
+																throw new Error('Errore durante l\'eliminazione della pianificazione');
+															}
+															return res.json();
+														})
+														.then(response => {
+															alert('Pianificazione eliminata con successo');
+															renderPianificazioni();
+														})
+												}
+											};
+											actionsRow.appendChild(deleteButton);
+
+											row.appendChild(actionsRow);
 											tableBody.appendChild(row);
 										});
 									})
+								};
+								renderPianificazioni();
 							},
 
 							addEvent() {
@@ -509,7 +552,7 @@
 									.then(data => {
 										data.pianificazioni.forEach(pianificazione => {
 											const eventDate = new Date(pianificazione.data);
-											let eventTheme = 'red';
+											// let eventTheme = 'red';
 
 											if (pianificazione.completata) {
 												eventTheme = 'green';
@@ -517,6 +560,8 @@
 												const today = new Date();
 												if (eventDate.toDateString() === today.toDateString()) {
 													eventTheme = 'blue';
+												} else if (eventDate < today) {
+													eventTheme = 'red';
 												} else {
 													eventTheme = 'yellow';
 												}

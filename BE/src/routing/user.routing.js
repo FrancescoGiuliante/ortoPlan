@@ -95,6 +95,44 @@ export default function userRouting(app) {
 
     })
 
+    app.delete('/pianificazione/:id', isLoggedIn, async (req, res) => {
+        const pianificazioneId = +req.params.id;
+        const pianificazione = await prisma.pianificazioni.findUnique({ where: { id: pianificazioneId } })
+        if (pianificazione) {
+            const pianificazioneDelete = await prisma.pianificazioni.delete({ where: { id: pianificazioneId } })
+            // rimando al FE il record cancellato o l'intera collezzione
+            res.json(pianificazione)
+        } else {
+            res.status(404).json({ message: 'Pianificazione not found' })
+        }
+    })
+
+    // Get find per id
+    app.get('/pianificazione/:id', isLoggedIn, async (req, res) => {
+        const pianificazioneId = +req.params.id;
+        const pianificazione = await prisma.pianificazioni.findUnique({
+            where: { id: pianificazioneId },
+            include: { myOrto: true } // Includi l'oggetto orto correlato
+        });
+        if (pianificazione) {
+            res.json(pianificazione);
+        } else {
+            res.status(404).json({ message: 'Pianificazione not found' });
+        }
+    })
+
+    app.put('/pianificazione/:id', isLoggedIn, async (req, res) => {
+        const pianificazioneId = +req.params.id;
+        const { completata } = req.body;
+
+        const updatedPianificazione = await prisma.pianificazioni.update({
+            where: { id: pianificazioneId },
+            data: { completata }
+        });
+
+        res.json(updatedPianificazione);
+    });
+
     app.post('/myorto', isLoggedIn, async (req, res) => {
         const { userId } = req.body;
 
@@ -134,7 +172,7 @@ export default function userRouting(app) {
             }
         });
 
-        res.json({pianificazioni, orto});
+        res.json({ pianificazioni, orto });
     });
 
     app.post('/mypianificazioniAll', isLoggedIn, async (req, res) => {
@@ -160,8 +198,41 @@ export default function userRouting(app) {
             }
         });
 
-        res.json({pianificazioni, orto});
+        res.json({ pianificazioni, orto });
     });
+
+    app.post('/mypianificazioniNext', isLoggedIn, async (req, res) => {
+        const ortoId = req.body.id;
+
+        if (!ortoId) {
+            return res.status(400).json({ error: 'Manca ortoId' });
+        }
+
+        const today = new Date();
+        const formattedToday = today.toISOString().split('T')[0];
+
+        const pianificazione = await prisma.pianificazioni.findFirst({
+            where: {
+                myOrtoId: ortoId,
+                data: {
+                    gte: formattedToday
+                }
+            },
+            orderBy: {
+                data: 'asc'
+            },
+            include: {
+                myOrto: true
+            }
+        });
+
+        if (pianificazione) {
+            return res.status(200).json(pianificazione);
+        } else {
+            return res.status(200).json({ message: 'Nessun evento pianificato' });
+        }
+    });
+
 
     // metodo http POST
     app.post('/users', createUserValidation, async (req, res) => {
@@ -215,6 +286,26 @@ export default function userRouting(app) {
             res.status(404).json({ message: 'User not found' })
         }
     })
+
+    // metodo http PUT
+    app.put('/updatePianificazione/:id', isLoggedIn, async (req, res) => {
+        const pianificazioneId = +req.params.id;
+        const { data, attivita, myOrtoId } = req.body;
+        const myOrtoIdInt = parseInt(myOrtoId);
+        
+
+        const pianificazioneAttuale = await prisma.pianificazioni.findUnique({
+            where: { id: pianificazioneId },
+            select: { completata: true }
+        });
+        const updatedPianificazione = await prisma.pianificazioni.update({
+            where: { id: pianificazioneId },
+            data: { data, attivita, completata: pianificazioneAttuale.completata, myOrtoId: myOrtoIdInt }
+        });
+
+        res.json(updatedPianificazione);
+
+    });
 
 
     // Get find per email

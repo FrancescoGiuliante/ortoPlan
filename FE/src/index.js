@@ -23,6 +23,14 @@ app.get('/info', (req, res) => {
     res.render('pages/info');
 })
 
+app.get('/orto', (req, res) => {
+    res.render('pages/orto');
+})
+
+app.get('/pianificazione', (req, res) => {
+    res.render('pages/pianificazione');
+})
+
 app.get('/glossario', (req, res) => {
     res.render('pages/glossario');
 })
