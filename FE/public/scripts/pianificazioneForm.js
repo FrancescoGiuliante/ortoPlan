@@ -46,12 +46,9 @@ pianificazioneForm.addEventListener('submit', async (event) => {
             },
             body: JSON.stringify({ data, attivita, myOrtoId })
         });
-
-        // Gestisci la risposta della richiesta
         if (!response.ok) {
             throw new Error('Errore durante l\'aggiornamento della pianificazione');
         } else {
-            // Aggiorna l'interfaccia utente
             displayPianificazione();
             closeModal();
         }

@@ -15,13 +15,14 @@ function displayPianificazione() {
         .then(res => res.json())
         .then(data => {
             const tableBody = document.querySelector('#pianificazioneTable tbody');
+            tableBody.innerHTML =''
             const row = document.createElement('tr');
             const h1Element = document.querySelector('[name="date"]');
 
             const dataSpan = document.getElementById('dataSpan');
             dataSpan.textContent = data.data;
             myOrtoId = data.myOrto.id
-
+            
             row.innerHTML = `
         <td>${data.myOrto.nome}</td>
         <td>${data.attivita}</td>

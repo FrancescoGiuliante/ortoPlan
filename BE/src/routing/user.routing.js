@@ -8,7 +8,6 @@ import isLoggedIn from '../middleware/isLoggedIn.js'
 export default function userRouting(app) {
     const DB_PATH = './db/users.json'
 
-    // users list
     app.get('/users', isLoggedIn, async (req, res) => {
         const users = await prisma.user.findMany()
         res.json(users);
@@ -24,9 +23,13 @@ export default function userRouting(app) {
         res.json(vocabolo);
     })
 
-    // home
-    app.get('/home', isLoggedIn, (req, res) => {
-        res.json({ message: 'Welcome to the home page', user: req.user });
+    app.get('/loggedIn', isLoggedIn, (req, res) => {
+        const user = req.params;
+        if (user) {
+            res.json({ message: 'Welcome to the page', user: req.user });
+        } else {
+            res.status(404).json({ message: 'User not found' })
+        }     
     });
 
     // profilo
@@ -39,6 +42,7 @@ export default function userRouting(app) {
         const user = await prisma.user.findUnique({ where: { id: userId } })
         res.json(user);
     })
+
 
     // metodo http DELETE
     app.delete('/users/:id', async (req, res) => {
@@ -244,6 +248,7 @@ export default function userRouting(app) {
                 messaggio: req.body.messaggio,
                 visualizzata: false,
                 myOrtoId: req.body.myOrtoId,
+                userId: req.body.userId,
             }
         })
         res.status(201);
@@ -274,7 +279,7 @@ export default function userRouting(app) {
                 myOrto: true
             }
         });
-
+        
         res.json({ pianificazioni, orto });
     });
 

@@ -16,7 +16,8 @@
                 <div
                     class="w-[90%] md:w-[62%] md:flex text-center flex-col md:gap-10 justify-center rounded-xl border-x-8 border-[#90ee90]">
                     <h1 id="titolo" class="text-2xl md:text-4xl text-[#fe3d52] mt-5"></h1>
-                    <div class="flex flex-col md:flex-row w-[90%] gap-9 md:gap-0 md:w-full md:px-6 justify-center mx-auto md:justify-between">
+                    <div
+                        class="flex flex-col md:flex-row w-[90%] gap-9 md:gap-0 md:w-full md:px-6 justify-center mx-auto md:justify-between">
                         <div class="rounded-full text-center md:p-8 border-x-2 md:border-x-8 border-[#90ee90]">
                             <h1 class="text-2xl text-[#42ae68]">Situazione Orto</h1>
                             <h1 class="text-xl text-[#fe3d52]" id="tipologia"></h1>
@@ -169,6 +170,7 @@
 
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
+                    <script src="/scripts/loggedIn.js"></script>
                     <script src="/scripts/orto.js"></script>
                     <script src="/scripts/ortoForm.js"></script>
                     <script src="/scripts/weatherAPI.js"></script>

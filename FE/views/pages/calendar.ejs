@@ -303,6 +303,7 @@
 
 			<%- include('partials/footer') %>
 				<%- include('partials/drawer_content') %>
+					<script src="/scripts/loggedIn.js"></script>
 					<script>
 						const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 						const DAYS = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
@@ -430,7 +431,7 @@
 										})
 											.then(response => {
 												if (!response.ok) {
-													throw new Error('Network response was not ok');
+													throw new Error('Errore nella risposta');
 												}
 												return response.json();
 											})
