@@ -12,24 +12,51 @@
 <body>
     <%- include('partials/navbar') %>
         <%- include('partials/menu') %>
-            <div class="w-full flex justify-center mt-10 mb-40">
+            <div class="w-full flex justify-center mt-20 mb-40">
                 <div
-                    class="w-[62%] flex flex-col gap-10 justify-center m-auto items-center rounded-xl border-x-8 border-[#90ee90]">
-                    <div class="flex w-full px-6 justify-between">
-                        <div class="rounded-full border-4">Situazione Orto</div>
-                        <div class="rounded-full border-4">Situazione Meteo</div>
-                    </div>
-                    <h1 class="text-4xl text-[#fe3d52]">Orto:</h1>
-                    <div>
-                        <div class="flex justify-between">
-                            <div>
-                                <img src="/assets/squirtle_png.png" class="h-20" alt="">
+                    class="w-[90%] md:w-[62%] md:flex text-center flex-col md:gap-10 justify-center rounded-xl border-x-8 border-[#90ee90]">
+                    <h1 id="titolo" class="text-2xl md:text-4xl text-[#fe3d52] mt-5"></h1>
+                    <div class="flex flex-col md:flex-row w-[90%] gap-9 md:gap-0 md:w-full md:px-6 justify-center mx-auto md:justify-between">
+                        <div class="rounded-full text-center md:p-8 border-x-2 md:border-x-8 border-[#90ee90]">
+                            <h1 class="text-2xl text-[#42ae68]">Situazione Orto</h1>
+                            <h1 class="text-xl text-[#fe3d52]" id="tipologia"></h1>
+                            <div class="w-full flex justify-center ">
+                                <img id="imgOrto" class="h-32" alt="">
                             </div>
-                            <div class="overflow-x-auto ">
-                                <table class="table ">
+                            <h2 class="px-16" id="situazioneAttuale"></h2>
+                            <div class="flex flex-col justify-center mt-4">
+                                <h1 class="text-xl text-[#fe3d52]">Stima del lavoro</h1>
+                                <ul id="stima" class="text-[14px]">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rounded-full text-center md:p-8 border-x-2 md:border-x-8 border-[#90ee90]">
+                            <h1 class="text-2xl text-[#42ae68]">Situazione meteo</h1>
+                            <h1 class="text-xl text-[#fe3d52]" id="luogo"></h1>
+                            <div class="w-full flex justify-center ">
+                                <img id="imgMeteo" class="h-32" alt="">
+                            </div>
+
+                            <h2 id="meteoAttuale"></h2>
+                            <div class="flex flex-col justify-center mt-4">
+                                <h1 class="text-xl text-[#fe3d52]">Meteo di domani</h1>
+                                <ul id="meteoFuturo" class="text-[14px]">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="md:flex md:justify-between">
+                            <div>
+                                <img src="/assets/squirtle_png.png" class="hidden md:flex h-20" alt="">
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table id="ortoTable" class="table ">
                                     <!-- head -->
                                     <thead>
-                                        <tr class="text-[15px]">
+                                        <tr class="text-[10px] md:text-[15px]">
                                             <th>Nome</th>
                                             <th>Tipo piantagione</th>
                                             <th>Città</th>
@@ -43,24 +70,107 @@
                                 </table>
                             </div>
                             <div>
-                                <img src="/assets/charmander_png.png" class="h-20" alt="">
+                                <img src="/assets/charmander_png.png" class="hidden md:flex h-20" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-center w-full">
                         <div class="">
-                            <button class="btn w-full bg-white font-light text-xl hover:bg-[#90ee90] border-4 border-[#fcce19]">Modifica</button>
+                            <button id="modifica"
+                                class="btn w-full bg-white font-light text-xl hover:bg-[#90ee90] border-4 border-[#fcce19]">Modifica</button>
                         </div>
-                        <div class="">
-                            <button class="btn w-full bg-white font-light text-xl hover:bg-[#90ee90] border-4 border-[#fcce19]">Pianifica</button>
-                        </div>
+                        <!-- <div class="">
+                            <button
+                                class="btn w-full bg-white font-light text-xl hover:bg-[#90ee90] border-4 border-[#fcce19]">Pianifica</button>
+                        </div> -->
                     </div>
                 </div>
-
             </div>
+
+            <dialog id="myModal" class="modal">
+                <div class="modal-box md:w-1/2 md:max-w-5xl">
+                    <h1 class="text-center text-[18px]">Modifica orto</h1>
+                    <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
+                        <div class="flex flex-col md:flex-row gap-2 md:gap-10">
+                            <form id="ortoForm" class="card-body">
+                                <div class="form-control -mt-8">
+                                    <label class="label">
+                                        <span class="label-text">Nome</span>
+                                    </label>
+                                    <input type="text" id="nomeOrto" placeholder="nome"
+                                        class="input input-bordered border-2 border-blue-400" />
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Luogo</span>
+                                    </label>
+                                    <input type="text" id="citta" name="citta" placeholder="luogo"
+                                        class="input input-bordered border-2 border-blue-400" />
+                                </div>
+                                <div class="flex w-full">
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Tipo di piantagione</span>
+                                        </label>
+                                        <select type="text" id="sceltaOrtaggi" name="sceltaOrtaggi"
+                                            placeholder="Tipo piantagione"
+                                            class="input input-bordered border-2 border-blue-400" disabled></select>
+                                    </div>
+                                    <div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text">Numero di piantine</span>
+                                            </label>
+                                            <input type="number" id="numeroPiante" placeholder="Numero"
+                                                class="input input-bordered border-2 w-[100px] md:w-[140px]  border-blue-400" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Data semina</span>
+                                    </label>
+                                    <input type="date" id="dataSemina" name="data" placeholder="Data"
+                                        class="input border-2 input-bordered border-blue-400" />
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Sistemazione</span>
+                                    </label>
+                                    <select id="sistemazione" name="sistemazione" placeholder="Sistemazione"
+                                        class="input border-2 input-bordered border-blue-400"></select>
+                                </div>
+                                <div class="form-control mt-6">
+                                    <button
+                                        class="btn bg-[#fe3d52] hover:bg-white hover:border-2 font-light hover:border-[#fe3d52]">Completa
+                                        la modifica</button>
+                                </div>
+                            </form>
+                            <div class="justify-center m-auto"><img src="/assets/campionessa.png"
+                                    class="h-60 md:h-96 -mt-10 md:mt-0" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="modal-action flex">
+                        <div>
+                            <button id="eliminaOrto"
+                                class="btn bg-[#fe3d52] hover:bg-white hover:border-2 font-light hover:border-[#fe3d52]">Elimina
+                                orto</button>
+                        </div>
+                        <form method="dialog">
+                            <!-- if there is a button, it will close the modal -->
+                            <button
+                                class="btn bg-[#90ee90] hover:bg-white hover:border-2 hover:border-[#90ee90]">Chiudi</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            </dialog>
 
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
+                    <script src="/scripts/orto.js"></script>
+                    <script src="/scripts/ortoForm.js"></script>
                     <script src="/scripts/weatherAPI.js"></script>
 </body>
 

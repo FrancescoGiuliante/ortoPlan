@@ -12,19 +12,16 @@ function displayPianificazione() {
             Authorization: 'Bearer ' + localStorage.getItem('token')
         }
     })
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             const tableBody = document.querySelector('#pianificazioneTable tbody');
-            tableBody.innerHTML = '';
             const row = document.createElement('tr');
             const h1Element = document.querySelector('[name="date"]');
 
-            // Aggiungi il valore di data.data dopo il testo "Evento del"
             const dataSpan = document.getElementById('dataSpan');
             dataSpan.textContent = data.data;
+            myOrtoId = data.myOrto.id
 
-
-            // Aggiungi le celle della riga con i dati della pianificazione
             row.innerHTML = `
         <td>${data.myOrto.nome}</td>
         <td>${data.attivita}</td>
@@ -48,6 +45,27 @@ function displayPianificazione() {
 
                 if (!response.ok) {
                     throw new Error('Errore durante l\'aggiornamento dello stato di completata');
+                } 
+                const data = await response.json();
+                
+                if (data.nuovaAttivita && data.nuovaDataFormattata) {
+                    fetch('http://localhost:8000/pianificazione', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: 'Bearer ' + localStorage.getItem('token')
+                        },
+                        body: JSON.stringify({
+                            myOrtoId: myOrtoId,
+                            data: data.nuovaDataFormattata,
+                            attivita: data.nuovaAttivita,
+                            completata: false
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(nuovaPianificazione => {
+                        console.log('Nuova pianificazione creata:', nuovaPianificazione);
+                    })
                 }
             });
 
@@ -59,7 +77,6 @@ function displayPianificazione() {
 displayPianificazione()
 
 function openModal(id) {
-    // Ottieni i dati della pianificazione dal backend
     fetch(`http://localhost:8000/pianificazione/${id}`, {
         method: 'GET',
         headers: {

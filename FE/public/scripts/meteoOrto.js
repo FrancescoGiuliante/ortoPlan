@@ -1,0 +1,1 @@
+const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${orto.citta}&appid=${apiKey}&units=metric&lang=it`;

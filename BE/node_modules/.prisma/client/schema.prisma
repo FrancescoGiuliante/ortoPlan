@@ -14,6 +14,7 @@ model User {
   email       String      @unique
   credentials Credential?
   myorti      MyOrto[]
+  
 }
 
 model Credential {
@@ -38,29 +39,43 @@ model Ortaggi {
 }
 
 model Glossario {
-  parola       String   @id
-  definizione  String
+  parola      String @id
+  definizione String
 }
 
 model MyOrto {
-  id              Int       @id @default(autoincrement())
+  id              Int              @id @default(autoincrement())
   nome            String
   citta           String
   tipoPiantagione String
   numeroPiante    Int
-  dataSemina      String @db.VarChar(10)
+  dataSemina      String           @db.VarChar(10)
   sistemazione    String
   userId          Int
-  user            User      @relation(fields: [userId], references: [id])
-  ortaggio        Ortaggi   @relation(fields: [tipoPiantagione], references: [nome])
+  user            User             @relation(fields: [userId], references: [id])
+  ortaggio        Ortaggi          @relation(fields: [tipoPiantagione], references: [nome])
   pianificazioni  Pianificazioni[]
+  notifiche       Notifica[]
 }
 
 model Pianificazioni {
-  id             Int       @id @default(autoincrement())
-  data           String    @db.VarChar(10)
-  attivita       String
-  completata     Boolean
-  myOrtoId       Int       
-  myOrto         MyOrto    @relation(fields: [myOrtoId], references: [id])
+  id         Int        @id @default(autoincrement())
+  data       String     @db.VarChar(10)
+  attivita   String
+  completata Boolean
+  myOrtoId   Int
+  myOrto     MyOrto     @relation(fields: [myOrtoId], references: [id], onDelete: Cascade)
+  notifiche  Notifica[]
+}
+
+model Notifica {
+  id               Int            @id @default(autoincrement())
+  userId           Int
+  pianificazioneId Int
+  messaggio        String
+  dataNotifica     DateTime       @default(now())
+  visualizzata     Boolean        @default(false)
+  pianificazione   Pianificazioni @relation(fields: [pianificazioneId], references: [id], onDelete: Cascade)
+  MyOrto           MyOrto?        @relation(fields: [myOrtoId], references: [id])
+  myOrtoId         Int?
 }

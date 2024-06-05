@@ -35,7 +35,7 @@ function fetchAndRenderOrti() {
 
             data.forEach(orto => {
                 const newCard = template.cloneNode(true);
-                newCard.style.display = 'block'; // Rendi visibile la card clonata
+                newCard.style.display = 'block';
                 newCard.querySelector('[name="nome"]').innerText = orto.nome;
                 newCard.querySelector('[name="tipo"]').innerText = orto.tipoPiantagione;
                 newCard.querySelector('[name="numero"]').innerText = orto.numeroPiante;
@@ -81,7 +81,6 @@ function fetchAndRenderOrti() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data);
                         const eventoElement = newCard.querySelector('[name="evento"]');
                         eventoElement.textContent = (data.attivita && data.data) ? `Prossima attività: ${data.attivita} - ${data.data}` : data.message;
 

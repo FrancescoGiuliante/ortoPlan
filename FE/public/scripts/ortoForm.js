@@ -57,10 +57,10 @@ ortoForm.addEventListener('submit', async (e) => {
     }
 
 
-    const url = 'http://localhost:8000/orto';
+    const url = `http://localhost:8000/orto/${id}`;
 
     const ortoResponse = await fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({
             nome,
             citta,
@@ -73,51 +73,11 @@ ortoForm.addEventListener('submit', async (e) => {
         headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + localStorage.getItem('token')
-        },
+        }
     });
 
     if (ortoResponse.ok) {
-        const ortoData = await ortoResponse.json();
-        console.log(ortoData);
-
-        fetch('http://localhost:8000/ortaggi', {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                const ortaggio = data.find(item => item.nome === tipoPiantagione);
-                const dataFormattata = new Date(dataSemina);
-                const tempiMaturazione = ortaggio.tempiMaturazione;
-                const dataAttuale = new Date();
-                const giorniMancantiMaturazione = Math.max(0, tempiMaturazione - Math.floor((dataAttuale - dataFormattata) / (1000 * 60 * 60 * 24)));
-                const frequenzaInnaffiatura = ortaggio.frequenzaInnaffiatura;
-                const primaInnaffiatura = new Date(dataFormattata);
-                primaInnaffiatura.setDate(primaInnaffiatura.getDate() + frequenzaInnaffiatura);
-                const dataPrimaInnaffiaturaFormattata = primaInnaffiatura.toISOString().split('T')[0];
-                
-                fetch('http://localhost:8000/pianificazione', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + localStorage.getItem('token')
-                    },
-                    body: JSON.stringify({
-                        myOrtoId: ortoData.id,
-                        data: dataPrimaInnaffiaturaFormattata,
-                        attivita: 'irrigazione',
-                        completata: false
-                    })
-                })
-                    .then(res => res.json())
-                    .then(nuovaPianificazione => {
-                        console.log('Prima pianificazione creata:', nuovaPianificazione);
-                    });
-            });
-
-
-        fetchAndRenderOrti()
+        showTable()
         closeModal();
     } else {
         const errorData = await ortoResponse.json();
@@ -138,7 +98,63 @@ async function getCity() {
     const data = await response.json();
 }
 
+function openModal(id) {
+    fetch(`http://localhost:8000/orto/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById('nomeOrto').value = data.nome
+            document.getElementById('citta').value = data.citta;
+            document.getElementById('dataSemina').value = data.dataSemina;
+            document.getElementById('numeroPiante').value = data.numeroPiante;
+            document.getElementById('sceltaOrtaggi').value = data.tipoPiantagione;
+            document.getElementById('sistemazione').value = data.sistemazione;
+
+            const modal = document.getElementById('myModal');
+            modal.showModal();
+        })
+}
+
 function closeModal() {
     const myModal = document.getElementById('myModal');
-    myModal.close();
+    myModal.close(); 
+}
+
+document.getElementById('modifica').addEventListener('click', function() {
+    openModal(+urlParams.get('id'));
+});
+
+const eliminaBtn = document.getElementById('eliminaOrto')
+
+eliminaBtn.addEventListener('click', function () {
+    var conferma = window.confirm("Sei sicuro di voler eliminare questo orto?");
+    if (conferma) {
+        deleteOrto(id);
+    }
+});
+
+function deleteOrto(id) {
+    fetch(`http://localhost:8000/orto/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+
+            } else {
+                alert('Orto eliminato correttamente')
+                window.location.href = '/mieiorti';
+            }
+        })
 }

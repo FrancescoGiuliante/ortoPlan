@@ -62,7 +62,7 @@ export default function userRouting(app) {
     })
 
     // metodo http POST creazione orto
-    app.post('/orto', async (req, res) => {
+    app.post('/orto', isLoggedIn, async (req, res) => {
         const newOrto = await prisma.myOrto.create({
             data: {
                 nome: req.body.nome,
@@ -78,6 +78,55 @@ export default function userRouting(app) {
         res.status(201);
         res.json(newOrto);
 
+    })
+
+    app.delete('/orto/:id', isLoggedIn, async (req, res) => {
+        const ortoId = +req.params.id;
+        const orto = await prisma.myOrto.findUnique({ where: { id: ortoId } })
+        if (orto) {
+            const ortoDelete = await prisma.myOrto.delete({ where: { id: ortoId } })
+            // rimando al FE il record cancellato o l'intera collezzione
+            res.json(orto)
+        } else {
+            res.status(404).json({ message: 'Orto not found' })
+        }
+    })
+
+    app.put('/orto/:id', isLoggedIn, async (req, res) => {
+        const ortoId = +req.params.id;
+        let orto = await prisma.myOrto.findUnique({ where: { id: ortoId, userId: req.user.id } })
+
+        if (orto) {
+            const updatedOrto = await prisma.myOrto.update({
+                where: { id: ortoId },
+                data: {
+                    nome: req.body.nome,
+                    citta: req.body.citta,
+                    numeroPiante: +req.body.numeroPiante,
+                    sistemazione: req.body.sistemazione,
+                    dataSemina: req.body.dataSemina,
+                }
+            })
+            res.json(updatedOrto);
+        } else {
+            res.status(404).json({ message: 'User not found' })
+        }
+    });
+
+    app.get('/orto/:id', isLoggedIn, async (req, res) => {
+        const ortoId = +req.params.id;
+
+        const orto = await prisma.myOrto.findUnique({
+            where: {
+                id: ortoId,
+                userId: req.user.id
+            },
+        });
+        if (orto) {
+            res.json(orto);
+        } else {
+            res.status(404).json({ message: 'Orto not found' });
+        }
     })
 
     // metodo http POST creazione pianificazione
@@ -112,14 +161,19 @@ export default function userRouting(app) {
         const pianificazioneId = +req.params.id;
         const pianificazione = await prisma.pianificazioni.findUnique({
             where: { id: pianificazioneId },
-            include: { myOrto: true } // Includi l'oggetto orto correlato
+            include: { myOrto: true } // Includo l'oggetto orto correlato
         });
         if (pianificazione) {
-            res.json(pianificazione);
+            if (pianificazione.myOrto.userId === req.user.id) {
+                res.json(pianificazione);
+            } else {
+                res.status(403).json({ message: 'Accesso non autorizzato' });
+            }
         } else {
             res.status(404).json({ message: 'Pianificazione not found' });
         }
-    })
+    });
+
 
     app.put('/pianificazione/:id', isLoggedIn, async (req, res) => {
         const pianificazioneId = +req.params.id;
@@ -129,8 +183,44 @@ export default function userRouting(app) {
             where: { id: pianificazioneId },
             data: { completata }
         });
+        if (completata && updatedPianificazione.attivita === 'irrigazione') {
+            const pianificazione = await prisma.pianificazioni.findUnique({
+                where: { id: pianificazioneId },
+                include: { myOrto: true }
+            });
 
-        res.json(updatedPianificazione);
+            const orto = pianificazione.myOrto;
+            const ortaggio = await prisma.ortaggi.findUnique({
+                where: { nome: orto.tipoPiantagione }
+            });
+
+            const frequenzaInnaffiatura = ortaggio.frequenzaInnaffiatura;
+            const tempiMaturazione = ortaggio.tempiMaturazione;
+            const dataUltimaPianificazione = new Date(updatedPianificazione.data);
+
+            let nuovaData = new Date(dataUltimaPianificazione);
+            nuovaData.setDate(nuovaData.getDate() + frequenzaInnaffiatura);
+            const nuovaDataFormattata = nuovaData.toISOString().split('T')[0];
+            const dataSemina = new Date(orto.dataSemina);
+            const giorniMancantiMaturazione = Math.max(0, tempiMaturazione - Math.floor((nuovaData - dataSemina) / (1000 * 60 * 60 * 24)));
+            const nuovaAttivita = giorniMancantiMaturazione > 0 ? 'irrigazione' : 'raccolta';
+
+            const pianificazioneEsistente = await prisma.pianificazioni.findFirst({
+                where: {
+                    myOrtoId: updatedPianificazione.myOrtoId,
+                    data: nuovaDataFormattata,
+                    attivita: nuovaAttivita
+                }
+            });
+            // controllo se la pianificazione è gia stata creata
+            if (!pianificazioneEsistente) {
+                res.json({ updatedPianificazione, nuovaAttivita, nuovaDataFormattata });
+            } else {
+                res.json(updatedPianificazione);
+            }
+        } else {
+            res.json(updatedPianificazione);
+        }
     });
 
     app.post('/myorto', isLoggedIn, async (req, res) => {
@@ -146,6 +236,19 @@ export default function userRouting(app) {
         });
         res.json(orto);
     });
+
+    app.post('/notifica', isLoggedIn, async (req, res) => {
+        const newNotifica = await prisma.notifica.create({
+            data: {
+                pianificazioniId: req.body.pianificazioneId,
+                messaggio: req.body.messaggio,
+                visualizzata: false,
+                myOrtoId: req.body.myOrtoId,
+            }
+        })
+        res.status(201);
+        res.json(newNotifica);
+    })
 
     app.post('/mypianificazioni', isLoggedIn, async (req, res) => {
         const userId = req.body.userId;
@@ -292,7 +395,7 @@ export default function userRouting(app) {
         const pianificazioneId = +req.params.id;
         const { data, attivita, myOrtoId } = req.body;
         const myOrtoIdInt = parseInt(myOrtoId);
-        
+
 
         const pianificazioneAttuale = await prisma.pianificazioni.findUnique({
             where: { id: pianificazioneId },

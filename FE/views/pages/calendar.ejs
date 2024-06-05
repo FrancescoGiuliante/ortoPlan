@@ -71,13 +71,13 @@
 				</style>
 
 
-				<div class="antialiased sans-serif h-screen">
+				<div class="antialiased sans-serif h-screen mb-20">
 					<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
 						<div class="md:w-[60%] mx-auto px-4 -mt-1">
 
 							<!-- <div class="font-bold text-gray-800 text-xl mb-4">
-				Schedule Tasks
-			</div> -->
+								Schedule Tasks
+							</div> -->
 
 							<div class="bg-white rounded-lg border-x-8 border-[#90ee90] shadow overflow-hidden">
 
@@ -298,309 +298,307 @@
 							<img src="/assets/charmander_png.png" class="h-32 -mt-1" alt="">
 						</div>
 					</div>
-
-
-					<%- include('partials/footer') %>
-						<%- include('partials/drawer_content') %>
 				</div>
-				<script>
-					const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-					const DAYS = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
-					// funzione per converitire la data nel giusto formato
-					function convertDateFormat(dateString) {
-						const dateObject = new Date(dateString);
-						const year = dateObject.getFullYear();
-						// Nota: i mesi in JavaScript sono indicizzati da 0 a 11, quindi aggiungi 1 al mese
-						const month = dateObject.getMonth() + 1;
-						const day = dateObject.getDate();
-						// Formatta la data nel formato "YYYY-MM-DD"
-						const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-						return formattedDate;
-					}
+			</div>
 
-					// function updateInputDate() {
-					// 	const inputElement = document.getElementById('selectedDateInput');
-					// 	const currentDate = inputElement.value;
-					// 	console.log(inputElement);
-					// 	const formattedDate = convertDateFormat(currentDate);
-					// 	inputElement.value = formattedDate;
-					// 	console.log(inputElement.value);
-					// }
+			<%- include('partials/footer') %>
+				<%- include('partials/drawer_content') %>
+					<script>
+						const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+						const DAYS = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+						// funzione per converitire la data nel giusto formato
+						function convertDateFormat(dateString) {
+							const dateObject = new Date(dateString);
+							const year = dateObject.getFullYear();
+							// Nota: i mesi in JavaScript sono indicizzati da 0 a 11, quindi aggiungi 1 al mese
+							const month = dateObject.getMonth() + 1;
+							const day = dateObject.getDate();
+							// Formatta la data nel formato "YYYY-MM-DD"
+							const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+							return formattedDate;
+						}
 
-
-					function app() {
-						let dataSelezionate;
-						return {
-							month: '',
-							year: '',
-							no_of_days: [],
-							blankdays: [],
-							days: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-							dataSelezionata: '',
-
-							events: [
-								{
-									event_date: new Date(2024, 4, 5),
-									event_title: "prova",
-									event_theme: 'blue'
-								},
-
-								{
-									event_date: new Date(2020, 3, 10),
-									event_title: "Birthday",
-									event_theme: 'red'
-								},
-
-								{
-									event_date: new Date(2020, 3, 16),
-									event_title: "Upcoming Event",
-									event_theme: 'green'
-								},
-								// {
-								// 	event_date: new Date(2024, 5, 1),
-								// 	event_title: 'Nuovo Evento',
-								// 	event_theme: 'purple'
-								// }
-							],
-							event_title: '',
-							event_date: '',
-							event_theme: 'yellow',
-
-							themes: [
-								{
-									value: "blue",
-									label: "Tema Blue"
-								},
-								{
-									value: "red",
-									label: "Tema rosso"
-								},
-								{
-									value: "yellow",
-									label: "Tema Giallo"
-								},
-								{
-									value: "green",
-									label: "Tema Verde"
-								},
-								{
-									value: "purple",
-									label: "Tema Viola"
-								}
-							],
-
-							openEventModal: false,
+						// function updateInputDate() {
+						// 	const inputElement = document.getElementById('selectedDateInput');
+						// 	const currentDate = inputElement.value;
+						// 	console.log(inputElement);
+						// 	const formattedDate = convertDateFormat(currentDate);
+						// 	inputElement.value = formattedDate;
+						// 	console.log(inputElement.value);
+						// }
 
 
-							initDate() {
-								let today = new Date();
-								this.month = today.getMonth();
-								this.year = today.getFullYear();
-								this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
-								this.fetchEvents();
-							},
+						function app() {
+							let dataSelezionate;
+							return {
+								month: '',
+								year: '',
+								no_of_days: [],
+								blankdays: [],
+								days: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+								dataSelezionata: '',
 
-							isToday(date) {
-								const today = new Date();
-								const d = new Date(this.year, this.month, date);
-
-								return today.toDateString() === d.toDateString() ? true : false;
-							},
-
-							showEventModal(date) {
-								// open the modal
-								this.openEventModal = true;
-								this.event_date = new Date(this.year, this.month, date).toDateString();
-
-								const userString = localStorage.getItem('user');
-								const userStorage = JSON.parse(userString);
-								const userId = +userStorage['id']
-
-								const data = convertDateFormat(this.event_date)
-								console.log(typeof data);
-								console.log(data, userId);
-								function renderPianificazioni() {
-									fetch('http://localhost:8000/mypianificazioni', {
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json',
-										Authorization: 'Bearer ' + localStorage.getItem('token')
+								events: [
+									{
+										event_date: new Date(2024, 4, 5),
+										event_title: "prova",
+										event_theme: 'blue'
 									},
-									body: JSON.stringify({ userId: userId, data: data })
-								})
-									.then(response => {
-										if (!response.ok) {
-											throw new Error('Network response was not ok');
-										}
-										return response.json();
-									})
-									.then(data => {
-										console.log('Pianificazioni:', data);
-										const tableBody = document.querySelector('#tablePianificazioni tbody');
-										tableBody.innerHTML = '';
 
-										const ortoMap = {};
-										data.orto.forEach(orto => {
-											ortoMap[orto.id] = orto.nome;
-										});
+									{
+										event_date: new Date(2020, 3, 10),
+										event_title: "Birthday",
+										event_theme: 'red'
+									},
 
-										data.pianificazioni.forEach(pianificazione => {
-											const row = document.createElement('tr');
+									{
+										event_date: new Date(2020, 3, 16),
+										event_title: "Upcoming Event",
+										event_theme: 'green'
+									},
+									// {
+									// 	event_date: new Date(2024, 5, 1),
+									// 	event_title: 'Nuovo Evento',
+									// 	event_theme: 'purple'
+									// }
+								],
+								event_title: '',
+								event_date: '',
+								event_theme: 'yellow',
 
-											const ortoNameRow = document.createElement('td');
-											ortoNameRow.textContent = ortoMap[pianificazione.myOrtoId];
-											row.appendChild(ortoNameRow);
+								themes: [
+									{
+										value: "blue",
+										label: "Tema Blue"
+									},
+									{
+										value: "red",
+										label: "Tema rosso"
+									},
+									{
+										value: "yellow",
+										label: "Tema Giallo"
+									},
+									{
+										value: "green",
+										label: "Tema Verde"
+									},
+									{
+										value: "purple",
+										label: "Tema Viola"
+									}
+								],
 
-											const attivitaRow = document.createElement('td');
-											attivitaRow.textContent = pianificazione.attivita;
-											row.appendChild(attivitaRow);
+								openEventModal: false,
 
-											const completataRow = document.createElement('td');
-											completataRow.textContent = pianificazione.completata ? 'Si' : 'No';
-											row.appendChild(completataRow);
 
-											const actionsRow = document.createElement('td');
-											
-											// Pulsante Visualizza
-											const viewButton = document.createElement('button');
-											viewButton.textContent = 'Visualizza';
-											viewButton.className = 'bg-blue-500 font-light hover:bg-white hover:border-2 hover:border-blue-400 p-2 rounded-xl mr-2';
-											viewButton.onclick = () => {
-												window.location.href = `/pianificazione?id=${pianificazione.id}`;
-											};
-											actionsRow.appendChild(viewButton);
+								initDate() {
+									let today = new Date();
+									this.month = today.getMonth();
+									this.year = today.getFullYear();
+									this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+									this.fetchEvents();
+								},
 
-											// Pulsante Elimina
-											const deleteButton = document.createElement('button');
-											deleteButton.textContent = 'Elimina';
-											deleteButton.className = 'bg-red-500 font-light hover:bg-white hover:border-2 hover:border-red-400 p-2 rounded-xl';
-											deleteButton.onclick = () => {
-												if (confirm('Sei sicuro di voler eliminare questa pianificazione?')) {
-													fetch(`http://localhost:8000/pianificazione/${pianificazione.id}`, {
-														method: 'DELETE',
-														headers: {
-															'Content-Type': 'application/json',
-															Authorization: 'Bearer ' + localStorage.getItem('token')
+								isToday(date) {
+									const today = new Date();
+									const d = new Date(this.year, this.month, date);
+
+									return today.toDateString() === d.toDateString() ? true : false;
+								},
+
+								showEventModal(date) {
+									// open the modal
+									this.openEventModal = true;
+									this.event_date = new Date(this.year, this.month, date).toDateString();
+
+									const userString = localStorage.getItem('user');
+									const userStorage = JSON.parse(userString);
+									const userId = +userStorage['id']
+
+									const data = convertDateFormat(this.event_date)
+									console.log(typeof data);
+									console.log(data, userId);
+									function renderPianificazioni() {
+										fetch('http://localhost:8000/mypianificazioni', {
+											method: 'POST',
+											headers: {
+												'Content-Type': 'application/json',
+												Authorization: 'Bearer ' + localStorage.getItem('token')
+											},
+											body: JSON.stringify({ userId: userId, data: data })
+										})
+											.then(response => {
+												if (!response.ok) {
+													throw new Error('Network response was not ok');
+												}
+												return response.json();
+											})
+											.then(data => {
+												console.log('Pianificazioni:', data);
+												const tableBody = document.querySelector('#tablePianificazioni tbody');
+												tableBody.innerHTML = '';
+
+												const ortoMap = {};
+												data.orto.forEach(orto => {
+													ortoMap[orto.id] = orto.nome;
+												});
+
+												data.pianificazioni.forEach(pianificazione => {
+													const row = document.createElement('tr');
+
+													const ortoNameRow = document.createElement('td');
+													ortoNameRow.textContent = ortoMap[pianificazione.myOrtoId];
+													row.appendChild(ortoNameRow);
+
+													const attivitaRow = document.createElement('td');
+													attivitaRow.textContent = pianificazione.attivita;
+													row.appendChild(attivitaRow);
+
+													const completataRow = document.createElement('td');
+													completataRow.textContent = pianificazione.completata ? 'Si' : 'No';
+													row.appendChild(completataRow);
+
+													const actionsRow = document.createElement('td');
+
+													// Pulsante Visualizza
+													const viewButton = document.createElement('button');
+													viewButton.textContent = 'Visualizza';
+													viewButton.className = 'bg-blue-500 font-light hover:bg-white hover:border-2 hover:border-blue-400 p-2 rounded-xl mr-2';
+													viewButton.onclick = () => {
+														window.location.href = `/pianificazione?id=${pianificazione.id}`;
+													};
+													actionsRow.appendChild(viewButton);
+
+													// Pulsante Elimina
+													const deleteButton = document.createElement('button');
+													deleteButton.textContent = 'Elimina';
+													deleteButton.className = 'bg-red-500 font-light hover:bg-white hover:border-2 hover:border-red-400 p-2 rounded-xl';
+													deleteButton.onclick = () => {
+														if (confirm('Sei sicuro di voler eliminare questa pianificazione?')) {
+															fetch(`http://localhost:8000/pianificazione/${pianificazione.id}`, {
+																method: 'DELETE',
+																headers: {
+																	'Content-Type': 'application/json',
+																	Authorization: 'Bearer ' + localStorage.getItem('token')
+																}
+															})
+																.then(res => {
+																	if (!res.ok) {
+																		throw new Error('Errore durante l\'eliminazione della pianificazione');
+																	}
+																	return res.json();
+																})
+																.then(response => {
+																	alert('Pianificazione eliminata con successo');
+																	renderPianificazioni();
+																})
 														}
-													})
-														.then(res => {
-															if (!res.ok) {
-																throw new Error('Errore durante l\'eliminazione della pianificazione');
-															}
-															return res.json();
-														})
-														.then(response => {
-															alert('Pianificazione eliminata con successo');
-															renderPianificazioni();
-														})
-												}
-											};
-											actionsRow.appendChild(deleteButton);
+													};
+													actionsRow.appendChild(deleteButton);
 
-											row.appendChild(actionsRow);
-											tableBody.appendChild(row);
-										});
-									})
-								};
-								renderPianificazioni();
-							},
+													row.appendChild(actionsRow);
+													tableBody.appendChild(row);
+												});
+											})
+									};
+									renderPianificazioni();
+								},
 
-							addEvent() {
-								if (this.event_title == '') {
-									return;
-								}
+								addEvent() {
+									if (this.event_title == '') {
+										return;
+									}
 
-								this.events.push({
-									event_date: this.event_date,
-									event_title: this.event_title,
-									event_theme: this.event_theme
-								});
-
-
-								// clear the form data
-								this.event_title = '';
-								this.event_date = '';
-								this.event_theme = 'blue';
-
-								//close the modal
-								this.openEventModal = false;
-							},
-
-							aggiungiEvento(event) {
-								this.events.push(event);
-							},
-
-							fetchEvents() {
-								const userString = localStorage.getItem('user');
-								const userStorage = JSON.parse(userString);
-								const userId = +userStorage['id'];
-
-								fetch('http://localhost:8000/mypianificazioniAll', {
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json',
-										Authorization: 'Bearer ' + localStorage.getItem('token')
-									},
-									body: JSON.stringify({ userId: userId })
-								})
-									.then(response => {
-										if (!response.ok) {
-											throw new Error('Network response was not ok');
-										}
-										return response.json();
-									})
-									.then(data => {
-										data.pianificazioni.forEach(pianificazione => {
-											const eventDate = new Date(pianificazione.data);
-											// let eventTheme = 'red';
-
-											if (pianificazione.completata) {
-												eventTheme = 'green';
-											} else {
-												const today = new Date();
-												if (eventDate.toDateString() === today.toDateString()) {
-													eventTheme = 'blue';
-												} else if (eventDate < today) {
-													eventTheme = 'red';
-												} else {
-													eventTheme = 'yellow';
-												}
-											}
-
-											const newEvent = {
-												event_date: eventDate,
-												event_title: pianificazione.attivita,
-												event_theme: eventTheme
-											};
-
-											this.aggiungiEvento(newEvent);
-										});
+									this.events.push({
+										event_date: this.event_date,
+										event_title: this.event_title,
+										event_theme: this.event_theme
 									});
-							},
-							getNoOfDays() {
-								let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
 
-								// find where to start calendar day of week
-								let dayOfWeek = new Date(this.year, this.month).getDay();
-								let blankdaysArray = [];
-								for (var i = 1; i <= dayOfWeek; i++) {
-									blankdaysArray.push(i);
+
+									// clear the form data
+									this.event_title = '';
+									this.event_date = '';
+									this.event_theme = 'blue';
+
+									//close the modal
+									this.openEventModal = false;
+								},
+
+								aggiungiEvento(event) {
+									this.events.push(event);
+								},
+
+								fetchEvents() {
+									const userString = localStorage.getItem('user');
+									const userStorage = JSON.parse(userString);
+									const userId = +userStorage['id'];
+
+									fetch('http://localhost:8000/mypianificazioniAll', {
+										method: 'POST',
+										headers: {
+											'Content-Type': 'application/json',
+											Authorization: 'Bearer ' + localStorage.getItem('token')
+										},
+										body: JSON.stringify({ userId: userId })
+									})
+										.then(response => {
+											if (!response.ok) {
+												throw new Error('Network response was not ok');
+											}
+											return response.json();
+										})
+										.then(data => {
+											data.pianificazioni.forEach(pianificazione => {
+												const eventDate = new Date(pianificazione.data);
+												// let eventTheme = 'red';
+
+												if (pianificazione.completata) {
+													eventTheme = 'green';
+												} else {
+													const today = new Date();
+													if (eventDate.toDateString() === today.toDateString()) {
+														eventTheme = 'blue';
+													} else if (eventDate < today) {
+														eventTheme = 'red';
+													} else {
+														eventTheme = 'yellow';
+													}
+												}
+
+												const newEvent = {
+													event_date: eventDate,
+													event_title: pianificazione.attivita,
+													event_theme: eventTheme
+												};
+
+												this.aggiungiEvento(newEvent);
+											});
+										});
+								},
+								getNoOfDays() {
+									let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+
+									// find where to start calendar day of week
+									let dayOfWeek = new Date(this.year, this.month).getDay();
+									let blankdaysArray = [];
+									for (var i = 1; i <= dayOfWeek; i++) {
+										blankdaysArray.push(i);
+									}
+
+									let daysArray = [];
+									for (var i = 1; i <= daysInMonth; i++) {
+										daysArray.push(i);
+									}
+
+									this.blankdays = blankdaysArray;
+									this.no_of_days = daysArray;
 								}
-
-								let daysArray = [];
-								for (var i = 1; i <= daysInMonth; i++) {
-									daysArray.push(i);
-								}
-
-								this.blankdays = blankdaysArray;
-								this.no_of_days = daysArray;
 							}
 						}
-					}
-				</script>
-				<script src="/scripts/formCalendario.js"></script>
-
-
+					</script>
+					<script src="/scripts/formCalendario.js"></script>
 </body>
 
 </html>

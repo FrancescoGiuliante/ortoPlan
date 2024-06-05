@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/style/output.css" rel="stylesheet">
-    <title>Presentation</title>
-</head>
-<body>
-    <%- include('partials/head_1') %>
-    <%- include('partials/menu') %>
-    <!-- <div class="w-full flex justify-end overflow-hidden ">
-        <img src="/assets/pokeball_verde_png.png" class="h-96 transform rotate-45 -scale-y-100 object-cover" alt="">
-    </div> -->
 
-    <div class="hero min-h-screen">
-        <div class="hero-content text-center">
-          <div class="max-w-md">
-            <h1 class="text-5xl font-bold">Hello there</h1>
-            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-            <button class="btn btn-primary">Get Started</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/style/output.css" rel="stylesheet">
+  <title>Presentation</title>
+</head>
+
+<body>
+  <%- include('partials/head_1') %>
+    <%- include('partials/menu') %>
+      <div class="hero mt-16 justify-center mx-auto">
+        <div class="hero-content flex flex-col gap-6">
+          <div class="text-center ">
+            <h1 class="text-4xl font-bold">Ti serve una mano con il tuo orto?</h1>
+          </div>
+          <div class="card shrink-0 w-full border-x-8 border-[#90ee90]">
+            <div class="flex gap-10">
+              <div class="rounded-full border-x-8 border-[#fe3d52] flex justify-center items-center text-center w-52">
+                <p class="text-2xl md:text-3xl text-[#70c570]">Ti puoi fidare di ortoPlan!</p>
+              </div>
+              <div class="justify-center m-auto">
+                <img src="/assets/occhiali.png" class="h-40 md:h-80" alt="">
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    <%- include('partials/footer') %>
+      
+      <div class="hero mt-10 justify-center mx-auto">
+        <div class="hero-content flex flex-col gap-6">
+          <div class="text-center">
+            <img src="/assets/confuso.png" class="h-32" alt="">
+            <h1 class="text-4xl font-bold text-[#fe3d52]">Come funziona l'app?</h1>
+          </div>
+          <div class="card shrink-0 w-full">
+            <div class="flex flex-col md:flex-row md:gap-10">
+              <div class="card w-96">
+                <figure class="px-10 pt-10">
+                  <img src="/assets/lettura.png" alt="Shoes" class="h-40" />
+                </figure>
+                <div class="card-body items-center text-center border-x-4 rounded-full border-[#90ee90]">
+                  <h2 class="card-title font-light"><span class="text-[#fe3d52]">1.</span>Informazioni utili</h2>
+                  <p class="font-light">Controlla tutte le Informazioni utili per la preparazione del tuo terreno e degli ortaggi che hai intezione di seminare</p>
+                </div>
+              </div>
+              
+              <div class="card w-96 bg-base-100">
+                <figure class="px-10 pt-10">
+                  <img src="/assets/pianta.png" alt="Shoes" class="h-40" />
+                </figure>
+                <div class="card-body items-center text-center border-x-4 rounded-full border-[#90ee90]">
+                  <h2 class="card-title font-light"><span class="text-[#fe3d52]">2.</span>Crea il tuo orto</h2>
+                  <p class="font-light">Crea il tuo orto con tutte le specifiche cosi puoi monitorarlo per tutta la maturazione.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero justify-center mx-auto mb-10">
+        <div class="hero-content flex flex-col gap-6">
+          <div class="card shrink-0 w-full">
+            <div class="flex flex-col md:flex-row md:gap-10">
+              <div class="card w-96 bg-base-100">
+                <figure class="px-10 pt-10">
+                  <img src="/assets/piani.png" alt="Shoes" class="h-40" />
+                </figure>
+                <div class="card-body items-center text-center border-x-4 rounded-full border-[#90ee90]">
+                  <h2 class="card-title font-light"><span class="text-[#fe3d52]">3.</span>Pianificazioni</h2>
+                  <p class="font-light">Sfrutta le pianificazioni automatizzate e quelle create da te per tenere sempre sotto controllo la crescita del tuo orto.</p>
+                </div>
+              </div>
+              
+              <div class="card w-96 bg-base-100">
+                <figure class="px-10 pt-10">
+                  <img src="/assets/pioggia.png" alt="Shoes" class="h-40" />
+                </figure>
+                <div class="card-body items-center text-center border-x-4 rounded-full border-[#90ee90]">
+                  <h2 class="card-title font-light"><span class="text-[#fe3d52]">4.</span>Meteo e addatabilità</h2>
+                  <p class="font-light">L'app ti aiuta con le previsioni meteo per tenerti sempre aggiornato, e di conseguenza le tue pianificazioni si adattano in base al meteo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full flex justify-center items-center">
+        <button class="btn bg-[#90ee90] hover:bg-white hover:border-2 text-[16px] hover:border-[#90ee90]"><a href="/registration">Registrati qui</a></button>
+        <div>
+          <img src="/assets/professore.png" class="h-52" alt="">
+        </div>
+      </div>
+      <%- include('partials/footer') %>
 </body>
+
 </html>
