@@ -113,14 +113,14 @@
               <li><button onclick="logout()">Logout</button></li>
             </ul>
           </div>
-          <button class="btn btn-ghost btn-circle">
+          <button id="btnNotifica" onclick="openNotificaModal()" class="btn btn-ghost btn-circle">
             <div class="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
-              <span class="badge badge-xs badge-primary indicator-item"></span>
+              <span id="pallino" class="badge badge-sm badge-primary bg-[#fe3d52] indicator-item hidden"></span>
             </div>
           </button>
         </div>
@@ -130,3 +130,36 @@
     <div class="flex md:hidden mx-auto justify-center -mt-24">
       <a href="/home"><img src="/assets/logo_brief.png" alt="" class="h-32 "></a>
     </div>
+
+    <dialog id="notificaModal" class="modal">
+      <div class="modal-box w-[95%] md:w-1/2 md:max-w-5xl">
+          <h1 class="text-center text-xl text-[#fe3d52]">Notifiche</h1>
+          <div class="card shrink-0 w-full border-x-8 border-[#90ee90] bg-base-100">
+            <div class="w-full flex justify-center mx-auto mt-5">
+              <div class="overflow-x-auto">
+                <table id="notificaTable" class="table hidden">
+                  <!-- head -->
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Messaggio</th>
+                      <th>Segna come già letta</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+              
+            </div>
+          </div>
+          <div class="modal-action flex">
+              <form method="dialog">
+                  <button
+                      class="btn bg-[#90ee90] hover:bg-white hover:border-2 hover:border-[#90ee90]">Chiudi</button>
+              </form>
+          </div>
+
+
+      </div>
+  </dialog>

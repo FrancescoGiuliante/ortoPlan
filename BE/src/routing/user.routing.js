@@ -29,7 +29,7 @@ export default function userRouting(app) {
             res.json({ message: 'Welcome to the page', user: req.user });
         } else {
             res.status(404).json({ message: 'User not found' })
-        }     
+        }
     });
 
     // profilo
@@ -242,18 +242,74 @@ export default function userRouting(app) {
     });
 
     app.post('/notifica', isLoggedIn, async (req, res) => {
-        const newNotifica = await prisma.notifica.create({
-            data: {
-                pianificazioniId: req.body.pianificazioneId,
-                messaggio: req.body.messaggio,
-                visualizzata: false,
-                myOrtoId: req.body.myOrtoId,
-                userId: req.body.userId,
+        const { pianificazioneId, messaggio } = req.body;
+
+        const notificaEsistente = await prisma.notifica.findFirst({
+            where: {
+                pianificazioneId: pianificazioneId
             }
-        })
-        res.status(201);
-        res.json(newNotifica);
+        });
+
+        if (notificaEsistente) {
+            if (notificaEsistente.messaggio !== messaggio) {
+                const newNotifica = await prisma.notifica.create({
+                    data: {
+                        pianificazioneId: req.body.pianificazioneId,
+                        messaggio: req.body.messaggio,
+                        visualizzata: false,
+                        myOrtoId: req.body.myOrtoId,
+                        userId: req.body.userId,
+                    }
+                });
+                res.json(newNotifica);
+            } else {
+                res.status(200).json({ message: 'Notifica già inviata' });
+            }
+        } else {
+            const newNotifica = await prisma.notifica.create({
+                data: {
+                    pianificazioneId: req.body.pianificazioneId,
+                    messaggio: req.body.messaggio,
+                    visualizzata: false,
+                    myOrtoId: req.body.myOrtoId,
+                    userId: req.body.userId,
+                }
+            });
+            res.status(200).json(newNotifica);
+        }
     })
+
+
+    app.get('/notifiche/:id', isLoggedIn, async (req, res) => {
+        const userId = +req.params.id;
+
+        const notifiche = await prisma.notifica.findMany({
+            where: {
+                userId: userId,
+                visualizzata: false
+            },
+        });
+        if (notifiche.length > 0) {
+            res.json(notifiche);
+        } else {
+            res.status(404).json({ message: 'Notifiche non trovate per questo utente' });
+        }
+    });
+
+    app.put('/notifiche/:id', isLoggedIn, async (req, res) => {
+        const id = +req.params.id;
+        const { visualizzata } = req.body;
+        
+        const updatedNotifica = await prisma.notifica.update({
+            where: { id: id },
+            data: { visualizzata: visualizzata }
+        });
+        
+        res.json(updatedNotifica);
+
+    });
+
+
 
     app.post('/mypianificazioni', isLoggedIn, async (req, res) => {
         const userId = req.body.userId;
@@ -279,7 +335,7 @@ export default function userRouting(app) {
                 myOrto: true
             }
         });
-        
+
         res.json({ pianificazioni, orto });
     });
 

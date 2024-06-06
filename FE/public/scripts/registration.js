@@ -12,9 +12,9 @@ const userForm = document.querySelector('#userForm');
 userForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     document.querySelectorAll('.input-error').forEach((element) => {
+        element.previousElementSibling.style.border = ''
         element.remove();
     });
-
     const firstName = e.target[0].value;
     const lastName = e.target[1].value;
     const email = e.target[2].value;
@@ -32,19 +32,22 @@ userForm.addEventListener('submit', async (e) => {
     }, {
         firstName: {
             presence: { allowEmpty: false },
-            length: { minimum: 5 }
+            length: { minimum: 3 }
         },
         lastName: {
             presence: { allowEmpty: false },
-            length: { minimum: 5 }
+            length: { minimum: 3 }
         },
         email: {
+            presence: { allowEmpty: false },
             email: true
         },
         password: {
+            presence: { allowEmpty: false },
             length: { minimum: 5 }
         },
         confirmPassword: {
+            presence: { allowEmpty: false },
             equality: {
                 attribute: "password",
                 message: "Le password non corrispondono"
@@ -55,7 +58,11 @@ userForm.addEventListener('submit', async (e) => {
     if (validation) {
         Object.keys(validation).forEach(key => {
             const el = document.querySelector(`input[name=${key}]`);
-            setError(el, validation[key]);
+            if (validation[key].length > 1) {
+                setError(el, validation[key][0]);
+            } else {
+                setError(el, validation[key]);
+            } 
         });
         return;
     }

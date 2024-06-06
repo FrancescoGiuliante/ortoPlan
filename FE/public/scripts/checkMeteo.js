@@ -8,7 +8,7 @@ fetch('http://localhost:8000/mypianificazioni', {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('token')
     },
-    body: JSON.stringify({ userId: userId, data: today })
+    body: JSON.stringify({ userId: idUtente, data: today })
 })
     .then(response => {
         if (!response.ok) {
@@ -79,7 +79,6 @@ fetch('http://localhost:8000/mypianificazioni', {
                                                     })
                                                         .then(res => res.json())
                                                         .then(data => {
-                                                            console.log(data);
                                                             fetch(`http://localhost:8000/notifica/`, {
                                                                 method: 'POST',
                                                                 headers: {
@@ -87,19 +86,18 @@ fetch('http://localhost:8000/mypianificazioni', {
                                                                     Authorization: 'Bearer ' + localStorage.getItem('token')
                                                                 },
                                                                 body: JSON.stringify({
-                                                                    pianificazioneId: data.id,
+                                                                    pianificazioneId: +data.id,
                                                                     messaggio: messaggio,
-                                                                    myOrtoId: data.myOrtoId,
-                                                                    userId: userId
+                                                                    myOrtoId: +data.myOrtoId,
+                                                                    userId: +idUtente
                                                                 })
                                                             })
                                                                 .then(res => res.json())
                                                                 .then(data => {
                                                                     console.log(data);
+                                                                    caricaNotifiche()
                                                                 })
                                                         })
-
-
                                                 }
                                             });
                                     }

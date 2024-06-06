@@ -30,7 +30,7 @@ loginForm.addEventListener('submit', async (e) => {
     const data = await res.json()
 
     console.log('data: ', data.message);
-    if (data.message == 'credenziali errate') {
+    if (data.message == 'Credenziali errate' || data.message == 'Utente non registrato') {
         errorBanner.classList.remove('hidden');
     } else {
         localStorage.setItem('user', JSON.stringify(data.user))
