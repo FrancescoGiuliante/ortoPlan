@@ -30,7 +30,6 @@ function addCard(ortaggio, index) {
     values[8].textContent = ortaggio.frequenzaInnaffiatura;
     values[9].textContent = ortaggio.note;
 
-    // Imposta l'immagine
     const img = card.querySelector('figure img');
     img.src = immaginiOrtaggi[index % immaginiOrtaggi.length];
     img.alt = ortaggio.nome;
@@ -39,11 +38,6 @@ function addCard(ortaggio, index) {
 }
 
 function showTable() {
-    // Svuota il contenitore delle card
-    // while (cardContainer.firstChild) {
-    //     cardContainer.removeChild(cardContainer.firstChild);
-    // }
-
     fetch('http://localhost:8000/ortaggi', {
         headers: {
             'Content-Type': 'application/json'

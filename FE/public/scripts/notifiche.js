@@ -65,8 +65,6 @@ function displayNotifiche(data) {
 
 }
 
-
-
 function caricaNotifiche() {
     fetch(`http://localhost:8000/notifiche/${idUtente}`, {
         headers: {

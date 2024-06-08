@@ -11,50 +11,72 @@
 <body>
   <%- include('partials/navbar') %>
     <%- include('partials/menu') %>
-    
+
 
       <div class="flex gap-2 my-auto w-[95%] justify-end ">
         <div class="text-xl mt-7 text-[#fe3d52]">Benvenuto <span id="user">Loading ...</span></div>
         <div><img src="/assets/OIG4 (1).jpeg" class="h-20" alt=""></div>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-8 justify-end ">
-        <div id="divNotifica" class="hidden items-center rounded-xl border-x-8 border-[#90ee90] mt-10 md:mt-0 h-20 px-10">
-          <h1 class="text-xl text-[#fe3d52]">Hey hai delle notifiche da leggere</h1>
-          <img src="/assets/notifica.png" class="h-32 md:h-40" alt="">
+      <div class="flex flex-col md:flex-row gap-8 justify-end mb-20 ">
+        <div class="flex flex-col gap-20">
+          <div id="divNotifica"
+            class="hidden items-center rounded-xl border-x-8 border-[#90ee90] mt-10 md:mt-0 h-20 px-10">
+            <h1 class="text-xl text-[#fe3d52]">Hey hai delle notifiche da leggere</h1>
+            <img src="/assets/notifica.png" class="h-32 md:h-40" alt="">
+          </div>
+          <div class="card shrink-0 w-full bg-base-100">
+            <div class="w-full flex justify-center ">
+              <img src="/assets/conti.png" class="h-32" alt="">
+            </div>
+            <h1 class="text-3xl text-center text-[#fe3d52] ">I miei numeri</h1>
+            <div class="flex flex-col md:flex-row gap-2 md:gap-10">
+              <div class="rounded-full text-center md:p-8 border-x-2 md:border-x-8 border-[#90ee90] w-full">
+                <h1 class="text-2xl text-[#42ae68]">Numeri orto</h1>
+                <ul>
+                  <li id="ortiNonCompletati">Numero di orti attivi: </li>
+                  <li id="ortiCompletati">Numero di orti completati: </li>
+                  <li id="numeroPiantine">Piantine totali coltivate: </li>
+                </ul>
+              </div>
+              <div class="rounded-full text-center md:p-8 border-x-2 md:border-x-8 w-full border-[#90ee90]">
+                <h1 class="text-2xl text-[#42ae68]">Numeri pianificazioni</h1>
+                <ul>
+                  <li id="pianificazioniProgrammate">Pianificazioni programmate: </li>
+                  <li id="pianificazioniCompletate">Pianificazioni completate: </li>
+                  <li id="pianificazioniNonCompletate">Pianificazioni non completate: </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-
-        
 
         <div class="">
           <div class="hero ">
-            <div class="hero-content text-center w-3/4 rounded-full border-[14px] border-[#003b15]">
-              <div class="flex flex-col mb-5">
-                <img src="/assets/charmander_innaffia.png" class="h-52 -mt-16" alt="">
-                <h1>provaaaaaaaa</h1>
+            <div
+              class="hero-content text-center mt-10 md:mt-0 w-full md:w-3/4 rounded-full border-[14px] border-[#003b15]">
+              <div class="flex flex-col mb-5 items-center">
+                <img src="/assets/charmander_innaffia.png" class="w-52 -mt-16" alt="">
+                <h1 class="text-xl text-[#fe3d52]">Le mie prossime pianificazioni:</h1>
+                <h2 id="dataPianificazione"></h2>
+                <ul id="prossimaPianificazione"></ul>
               </div>
-  
-  
             </div>
           </div>
-          <div class="flex justify-center w-full -mt-28 md:-mt-36 mb-20">
+          <div class="flex justify-center w-full -mt-28 md:-mt-36 md:mb-20">
             <img src="/assets/pokeball_verde_png.png" class=" md:h-80 rotate-180 -z-10 " alt="">
           </div>
         </div>
 
       </div>
-      
-
-
 
       <%- include('partials/footer') %>
         <%- include('partials/drawer_content') %>
-          <script src="/scripts/loggedIn.js"></script>         
+          <script src="/scripts/loggedIn.js"></script>
           <script src="/scripts/notifiche.js"></script>
           <script src="/scripts/checkMeteo.js"></script>
           <script src="/scripts/home.js"></script>
           <script src="/scripts/reminderPianificazioni.js"></script>
-          <!-- <script src="/scripts/weatherAPI.js"></script> -->
 </body>
 
 </html>

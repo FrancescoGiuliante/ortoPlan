@@ -11,10 +11,11 @@
 <body>
     <%- include('partials/navbar') %>
         <%- include('partials/menu') %>
-        <div class="flex justify-center mt-2">
-            <img src="/assets/bulbprofilo.png" class="h-28 md:h-32" alt="">
-        </div>
-            <div class="flex gap-2 justify-center text-2xl mb-4 text-[#003b15]">Profilo di <span id="firstname_head" class="text-[#fe3d52]">Loading ...</span></div>
+            <div class="flex justify-center mt-2">
+                <img src="/assets/bulbprofilo.png" class="h-28 md:h-32" alt="">
+            </div>
+            <div class="flex gap-2 justify-center text-2xl mb-4 text-[#003b15]">Profilo di <span id="firstname_head"
+                    class="text-[#fe3d52]">Loading ...</span></div>
             <div class="hero">
                 <div class="flex justify-center -mt-[350px] md:mt-0 gap-52 md:justify-between w-1/2">
                     <img src="/assets/charmander_png.png" class="h-24 md:h-40" alt="">
@@ -50,7 +51,9 @@
                             </svg>
                             <span id="email">Loading ...</span>
                         </label>
-                        <button class="btn bg-[#90ee90] hover:bg-white hover:border-2  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]" onclick="my_modal_4.showModal()">Modifica profilo</button>
+                        <button
+                            class="btn bg-[#90ee90] hover:bg-white hover:border-2  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]"
+                            onclick="my_modal_4.showModal()">Modifica profilo</button>
                         <dialog id="my_modal_4" class="modal">
                             <div class="modal-box md:w-1/2 md:max-w-5xl">
                                 <h1 class="text-center text-[18px]">Modifica il tuo profilo</h1>
@@ -61,47 +64,57 @@
                                                 <label class="label">
                                                     <span class="label-text">Nome</span>
                                                 </label>
-                                                <input type="text" name="firstName" placeholder="nome" class="input input-bordered border-2 border-blue-400" />
+                                                <input type="text" name="firstName" placeholder="nome"
+                                                    class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Cognome</span>
                                                 </label>
-                                                <input type="text" name="lastName" placeholder="cognome" class="input input-bordered border-2 border-blue-400" />
+                                                <input type="text" name="lastName" placeholder="cognome"
+                                                    class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Email</span>
                                                 </label>
-                                                <input type="email" name="email" placeholder="email" class="input input-bordered border-2 border-blue-400" />
+                                                <input type="email" name="email" placeholder="email"
+                                                    class="input input-bordered border-2 border-blue-400" />
                                             </div>
-                                            <div class="form-control  tooltip tooltip-right " data-tip="Minimo 5 caratteri">
+                                            <div class="form-control  tooltip tooltip-right "
+                                                data-tip="Minimo 5 caratteri">
                                                 <label class="label">
                                                     <span class="label-text">Password</span>
                                                 </label>
-                                                <input type="password" name="password" placeholder="password" class="w-full input border-2 input-bordered border-blue-400" />
+                                                <input type="password" name="password" placeholder="password"
+                                                    class="w-full input border-2 input-bordered border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Ripeti password</span>
                                                 </label>
-                                                <input type="password" name="confirmPassword" placeholder="password" class="input border-2 input-bordered border-blue-400" />
+                                                <input type="password" name="confirmPassword" placeholder="password"
+                                                    class="input border-2 input-bordered border-blue-400" />
                                             </div>
                                             <div class="form-control mt-6">
-                                                <button class="btn bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]">Completa la modifica</button>
+                                                <button
+                                                    class="btn bg-[#fe3d52] hover:bg-white hover:border-2 hover:border-[#fe3d52]">Completa
+                                                    la modifica</button>
                                             </div>
                                         </form>
-                                        <div class="justify-center m-auto"><img src="/assets/anson_png.png" class="h-52 md:h-80 -mt-10 md:mt-0" alt=""></div>
+                                        <div class="justify-center m-auto"><img src="/assets/anson_png.png"
+                                                class="h-52 md:h-80 -mt-10 md:mt-0" alt=""></div>
                                     </div>
                                 </div>
-                              <div class="modal-action">
-                                <form method="dialog">
-                                  <!-- if there is a button, it will close the modal -->
-                                  <button class="btn bg-[#90ee90] hover:bg-white hover:border-2 hover:border-[#90ee90]">Chiudi</button>
-                                </form>
-                              </div>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- if there is a button, it will close the modal -->
+                                        <button
+                                            class="btn bg-[#90ee90] hover:bg-white hover:border-2 hover:border-[#90ee90]">Chiudi</button>
+                                    </form>
+                                </div>
                             </div>
-                          </dialog>
+                        </dialog>
                     </div>
                 </div>
             </div>
@@ -116,11 +129,11 @@
 
             <%- include('partials/footer') %>
                 <%- include('partials/drawer_content') %>
-                <script src="/scripts/loggedIn.js"></script>
-                <script src="/scripts/notifiche.js"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-                <script src="/scripts/profilo.js"></script>
-                <script src="/scripts/confirmation.js"></script>
+                    <script src="/scripts/loggedIn.js"></script>
+                    <script src="/scripts/notifiche.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+                    <script src="/scripts/profilo.js"></script>
+                    <script src="/scripts/confirmation.js"></script>
 </body>
 
 </html>

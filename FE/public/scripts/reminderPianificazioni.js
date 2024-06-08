@@ -43,7 +43,7 @@ fetch('http://localhost:8000/mypianificazioni', {
                             const dayOfWeekTomorrow = daysOfWeek[todayDate.getDay()];
                             const dayOfMonthTomorrow = todayDate.getDate();
                             const messaggio = `Ricordati che domani ${dayOfWeekTomorrow} ${dayOfMonthTomorrow} hai programmato l'attività ${attivita} per l'orto ${nomeOrto} `;
-                            
+
                             fetch(`http://localhost:8000/notifica/`, {
                                 method: 'POST',
                                 headers: {
@@ -60,6 +60,46 @@ fetch('http://localhost:8000/mypianificazioni', {
                                 .then(res => res.json())
                                 .then(data => {
                                     console.log(data);
+                                })
+
+                            const apiKey = "b0a3aec6fbd58bd2729579cfe364775b";
+                            const weatherForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${data.citta}&appid=${apiKey}&units=metric&lang=it`;
+
+                            fetch(weatherForecastUrl)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Failed to fetch weather data');
+                                    }
+                                    return response.json();
+                                })
+                                .then(weatherData => {
+                                    const tomorrowWeatherList = weatherData.list.filter(item => item.dt_txt.startsWith(tomorrow));
+                                    let previstaPioggia = false
+                                    tomorrowWeatherList.forEach(forecast => {
+                                        if (forecast.weather[0].id >= 200 && forecast.weather[0].id < 600) {
+                                            previstaPioggia = true
+                                        }
+                                    })
+                                    if (previstaPioggia) {
+                                        const messaggioForecast = `Hey occhio che domani ${dayOfWeekTomorrow} ${dayOfMonthTomorrow} è prevista pioggia a ${data.citta} `;
+                                        fetch(`http://localhost:8000/notifica/`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                Authorization: 'Bearer ' + localStorage.getItem('token')
+                                            },
+                                            body: JSON.stringify({
+                                                pianificazioneId: +pianificazioneId,
+                                                messaggio: messaggioForecast,
+                                                myOrtoId: myOrtoId,
+                                                userId: +userId
+                                            })
+                                        })
+                                            .then(res => res.json())
+                                            .then(data => {
+                                                console.log(data);
+                                            })
+                                    }
                                 })
 
                         })

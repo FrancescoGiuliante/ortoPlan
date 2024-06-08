@@ -12,7 +12,7 @@ app.get('/users', (req, res) => {
 })
 
 app.get('/users/:id', (req, res) => {
-    res.render('pages/user', {userId: +req.params.id})
+    res.render('pages/user', { userId: +req.params.id })
 })
 
 app.get('/info_ortaggi', (req, res) => {

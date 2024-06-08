@@ -6,10 +6,8 @@ userId = userStorage['id']
 function convertDateFormat(dateString) {
     const dateObject = new Date(dateString);
     const year = dateObject.getFullYear();
-    // Nota: i mesi in JavaScript sono indicizzati da 0 a 11, quindi aggiungi 1 al mese
     const month = dateObject.getMonth() + 1;
     const day = dateObject.getDate();
-    // Formatta la data nel formato "YYYY-MM-DD"
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     return formattedDate;
 }

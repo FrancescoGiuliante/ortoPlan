@@ -18,7 +18,6 @@ function showTable() {
     while (child) {
         console.log(child)
         parolaTableBody.removeChild(child)
-        // child = userTableBody.lastElementChild
     }
 
     fetch('http://localhost:8000/glossario', {

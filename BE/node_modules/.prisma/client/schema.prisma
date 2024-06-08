@@ -19,7 +19,7 @@ model User {
 
 model Credential {
   userId   Int    @id
-  user     User   @relation(fields: [userId], references: [id])
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   password String
 }
 
@@ -52,7 +52,7 @@ model MyOrto {
   dataSemina      String           @db.VarChar(10)
   sistemazione    String
   userId          Int
-  user            User             @relation(fields: [userId], references: [id])
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   ortaggio        Ortaggi          @relation(fields: [tipoPiantagione], references: [nome])
   pianificazioni  Pianificazioni[]
   notifiche       Notifica[]

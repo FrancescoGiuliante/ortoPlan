@@ -207,7 +207,6 @@
 											<h2 class="font-light text-2xl text-[#fe3d52] mb-6 border-b pb-2">Aggiungi
 												evento
 											</h2>
-											<!-- <img src="/assets/contadina.png" class="h-40" alt=""> -->
 
 										</div>
 										<form id="pianificazioneForm">
@@ -239,6 +238,7 @@
 											</div>
 
 											<div class="flex justify-between">
+												<!-- colore pianificazione -->
 												<!-- <div class="inline-block w-64 mb-4">
 												<label
 													class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Seleziona
@@ -311,24 +311,11 @@
 						function convertDateFormat(dateString) {
 							const dateObject = new Date(dateString);
 							const year = dateObject.getFullYear();
-							// Nota: i mesi in JavaScript sono indicizzati da 0 a 11, quindi aggiungi 1 al mese
 							const month = dateObject.getMonth() + 1;
 							const day = dateObject.getDate();
-							// Formatta la data nel formato "YYYY-MM-DD"
 							const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 							return formattedDate;
 						}
-
-						// function updateInputDate() {
-						// 	const inputElement = document.getElementById('selectedDateInput');
-						// 	const currentDate = inputElement.value;
-						// 	console.log(inputElement);
-						// 	const formattedDate = convertDateFormat(currentDate);
-						// 	inputElement.value = formattedDate;
-						// 	console.log(inputElement.value);
-						// }
-
-
 						function app() {
 							let dataSelezionate;
 							return {
@@ -357,11 +344,6 @@
 										event_title: "Upcoming Event",
 										event_theme: 'green'
 									},
-									// {
-									// 	event_date: new Date(2024, 5, 1),
-									// 	event_title: 'Nuovo Evento',
-									// 	event_theme: 'purple'
-									// }
 								],
 								event_title: '',
 								event_date: '',
@@ -409,7 +391,6 @@
 								},
 
 								showEventModal(date) {
-									// open the modal
 									this.openEventModal = true;
 									this.event_date = new Date(this.year, this.month, date).toDateString();
 
@@ -553,7 +534,6 @@
 										.then(data => {
 											data.pianificazioni.forEach(pianificazione => {
 												const eventDate = new Date(pianificazione.data);
-												// let eventTheme = 'red';
 
 												if (pianificazione.completata) {
 													eventTheme = 'green';
@@ -580,8 +560,6 @@
 								},
 								getNoOfDays() {
 									let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-
-									// find where to start calendar day of week
 									let dayOfWeek = new Date(this.year, this.month).getDay();
 									let blankdaysArray = [];
 									for (var i = 1; i <= dayOfWeek; i++) {

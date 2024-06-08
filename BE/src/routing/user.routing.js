@@ -2,6 +2,7 @@ import { createUserValidation } from '../validations/usersValidations.js'
 import { updateUserValidation } from '../validations/usersValidations.js'
 import prisma from '../../db/prisma.js'
 import isLoggedIn from '../middleware/isLoggedIn.js'
+import bcrypt from 'bcrypt';
 
 
 
@@ -90,7 +91,7 @@ export default function userRouting(app) {
         if (orto) {
             const ortoDelete = await prisma.myOrto.delete({ where: { id: ortoId } })
             // rimando al FE il record cancellato o l'intera collezzione
-            res.json(orto)
+            res.json(ortoDelete)
         } else {
             res.status(404).json({ message: 'Orto not found' })
         }
@@ -246,25 +247,13 @@ export default function userRouting(app) {
 
         const notificaEsistente = await prisma.notifica.findFirst({
             where: {
-                pianificazioneId: pianificazioneId
+                pianificazioneId: pianificazioneId,
+                messaggio: messaggio
             }
         });
 
         if (notificaEsistente) {
-            if (notificaEsistente.messaggio !== messaggio) {
-                const newNotifica = await prisma.notifica.create({
-                    data: {
-                        pianificazioneId: req.body.pianificazioneId,
-                        messaggio: req.body.messaggio,
-                        visualizzata: false,
-                        myOrtoId: req.body.myOrtoId,
-                        userId: req.body.userId,
-                    }
-                });
-                res.json(newNotifica);
-            } else {
-                res.status(200).json({ message: 'Notifica già inviata' });
-            }
+            res.status(200).json({ message: 'Notifica già inviata' });
         } else {
             const newNotifica = await prisma.notifica.create({
                 data: {
@@ -275,7 +264,7 @@ export default function userRouting(app) {
                     userId: req.body.userId,
                 }
             });
-            res.status(200).json(newNotifica);
+            res.json(newNotifica);
         }
     })
 
@@ -299,12 +288,12 @@ export default function userRouting(app) {
     app.put('/notifiche/:id', isLoggedIn, async (req, res) => {
         const id = +req.params.id;
         const { visualizzata } = req.body;
-        
+
         const updatedNotifica = await prisma.notifica.update({
             where: { id: id },
             data: { visualizzata: visualizzata }
         });
-        
+
         res.json(updatedNotifica);
 
     });
@@ -407,10 +396,11 @@ export default function userRouting(app) {
                 email: req.body.email,
             }
         })
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const newUserCredential = await prisma.credential.create({
             data: {
                 userId: newUser.id,
-                password: req.body.password,
+                password: hashedPassword,
             }
         })
 
