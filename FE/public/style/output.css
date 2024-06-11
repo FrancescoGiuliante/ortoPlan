@@ -1469,18 +1469,6 @@ html {
     }
   }
 
-  .btn-outline.btn-success:hover {
-    --tw-text-opacity: 1;
-    color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
-  }
-
-  @supports (color: color-mix(in oklab, black, black)) {
-    .btn-outline.btn-success:hover {
-      background-color: color-mix(in oklab, var(--fallback-su,oklch(var(--su)/1)) 90%, black);
-      border-color: color-mix(in oklab, var(--fallback-su,oklch(var(--su)/1)) 90%, black);
-    }
-  }
-
   .btn-outline.btn-info:hover {
     --tw-text-opacity: 1;
     color: var(--fallback-inc,oklch(var(--inc)/var(--tw-text-opacity)));
@@ -2101,21 +2089,12 @@ html {
     --btn-color: var(--fallback-in);
   }
 
-  .btn-success {
-    --btn-color: var(--fallback-su);
-  }
-
   .btn-error {
     --btn-color: var(--fallback-er);
   }
 }
 
 @supports (color: color-mix(in oklab, black, black)) {
-  .btn-outline.btn-success.btn-active {
-    background-color: color-mix(in oklab, var(--fallback-su,oklch(var(--su)/1)) 90%, black);
-    border-color: color-mix(in oklab, var(--fallback-su,oklch(var(--su)/1)) 90%, black);
-  }
-
   .btn-outline.btn-info.btn-active {
     background-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
     border-color: color-mix(in oklab, var(--fallback-in,oklch(var(--in)/1)) 90%, black);
@@ -2138,10 +2117,6 @@ html {
     --btn-color: var(--in);
   }
 
-  .btn-success {
-    --btn-color: var(--su);
-  }
-
   .btn-error {
     --btn-color: var(--er);
   }
@@ -2151,12 +2126,6 @@ html {
   --tw-text-opacity: 1;
   color: var(--fallback-inc,oklch(var(--inc)/var(--tw-text-opacity)));
   outline-color: var(--fallback-in,oklch(var(--in)/1));
-}
-
-.btn-success {
-  --tw-text-opacity: 1;
-  color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
-  outline-color: var(--fallback-su,oklch(var(--su)/1));
 }
 
 .btn-error {
@@ -2191,16 +2160,6 @@ html {
 .btn-ghost.btn-active {
   border-color: transparent;
   background-color: var(--fallback-bc,oklch(var(--bc)/0.2));
-}
-
-.btn-outline.btn-success {
-  --tw-text-opacity: 1;
-  color: var(--fallback-su,oklch(var(--su)/var(--tw-text-opacity)));
-}
-
-.btn-outline.btn-success.btn-active {
-  --tw-text-opacity: 1;
-  color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
 }
 
 .btn-outline.btn-info {
@@ -2775,16 +2734,6 @@ details.collapse summary::-webkit-details-marker {
   .modal::backdrop {
   background-color: #0006;
   animation: modal-pop 0.2s ease-out;
-}
-
-.modal-backdrop {
-  z-index: -1;
-  grid-column-start: 1;
-  grid-row-start: 1;
-  display: grid;
-  align-self: stretch;
-  justify-self: stretch;
-  color: transparent;
 }
 
 .modal-open .modal-box,
@@ -3758,6 +3707,10 @@ html:has(.drawer-toggle:checked) {
   z-index: 1;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -4095,10 +4048,6 @@ html:has(.drawer-toggle:checked) {
   height: 2rem;
 }
 
-.h-80 {
-  height: 20rem;
-}
-
 .h-\[200px\] {
   height: 200px;
 }
@@ -4211,16 +4160,17 @@ html:has(.drawer-toggle:checked) {
   width: 100vw;
 }
 
-.max-w-6xl {
-  max-width: 72rem;
-}
-
 .max-w-md {
   max-width: 28rem;
 }
 
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.-translate-y-full {
+  --tw-translate-y: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .rotate-180 {
@@ -4261,6 +4211,10 @@ html:has(.drawer-toggle:checked) {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
 }
 
 .flex-wrap {
@@ -4434,10 +4388,6 @@ html:has(.drawer-toggle:checked) {
   border-top-width: 1px;
 }
 
-.border-solid {
-  border-style: solid;
-}
-
 .border-\[\#003b15\] {
   --tw-border-opacity: 1;
   border-color: rgb(0 59 21 / var(--tw-border-opacity));
@@ -4481,11 +4431,6 @@ html:has(.drawer-toggle:checked) {
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
-}
-
-.border-gray-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
 .border-green-200 {
@@ -4561,11 +4506,6 @@ html:has(.drawer-toggle:checked) {
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
-}
-
-.bg-orange-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
 .bg-purple-100 {
@@ -4849,11 +4789,6 @@ html:has(.drawer-toggle:checked) {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }
 
-.text-blue-600 {
-  --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
-}
-
 .text-blue-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
@@ -4967,8 +4902,18 @@ html:has(.drawer-toggle:checked) {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-100 {
   transition-duration: 100ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 .ease-in-out {
@@ -5124,11 +5069,6 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
   background-color: rgb(254 61 82 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-orange-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -5190,6 +5130,10 @@ div, h1, h2, h3, h4, h5, h6, p, span, a, th, tr, button, li, ul, ol, input, text
 
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .md\:mb-20 {
+    margin-bottom: 5rem;
   }
 
   .md\:ml-0 {

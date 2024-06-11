@@ -54,23 +54,31 @@ fetch(`http://localhost:8000/mypianificazioniAll/`, {
         const prossimePianificazioniTable = document.querySelector('#prossimaPianificazione')
         const dataPianificazione = document.querySelector('#dataPianificazione')
         let dataH2
-        prossimePianificazioni.forEach(element => {
-            if (element['completata'] == false) {
-                dataH2 = element['data']
-                const li = document.createElement('li');
-                li.textContent = `${element['attivita']} - ${element.myOrto['nome']}`
-                prossimePianificazioniTable.appendChild(li)
-            }
-        });
-        dataPianificazione.textContent = ` ${dataH2}`;
+        if (prossimePianificazioni.length > 0) {
+            prossimePianificazioni.forEach(element => {
+                if (element['completata'] == false) {
+                    dataH2 = element['data']
+                    const li = document.createElement('li');
+                    li.textContent = `${element['attivita']} - ${element.myOrto['nome']}`
+                    prossimePianificazioniTable.appendChild(li)
+                }
+            });
+        } else {
+            const li = document.createElement('li');
+            li.textContent = 'Nessuna pianificazione';
+            dataH2 = ''
+            prossimePianificazioniTable.appendChild(li);
+        }
+        
+        dataPianificazione.textContent = `${dataH2}`;
         const pianificazioniCompletateElement = document.querySelector('#pianificazioniCompletate')
-        pianificazioniCompletateElement.textContent = `Pianificazioni completate:  ${pianificazioniCompletate}`;
+        pianificazioniCompletateElement.textContent = `Completate:  ${pianificazioniCompletate}`;
 
         const pianificazioniNonCompletateElement = document.querySelector('#pianificazioniNonCompletate')
-        pianificazioniNonCompletateElement.textContent = `Pianificazioni non completate:  ${pianificazioniNonCompletate}`;
+        pianificazioniNonCompletateElement.textContent = `Non completate:  ${pianificazioniNonCompletate}`;
 
         const pianificazioniProgrammateElement = document.querySelector('#pianificazioniProgrammate')
-        pianificazioniProgrammateElement.textContent = `Pianificazioni programmate:  ${pianificazioniProgrammate}`;
+        pianificazioniProgrammateElement.textContent = `In programma:  ${pianificazioniProgrammate}`;
     })
 
 fetch(`http://localhost:8000/myorto/`, {

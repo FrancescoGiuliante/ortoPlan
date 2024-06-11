@@ -1,35 +1,38 @@
 function fetchProfilo(params) {
-    const userString = localStorage.getItem('user');
-    const userStorage = JSON.parse(userString);
-
-    fetch('http://localhost:8000/profilo', {
-    headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
-})
-    .then(res => {
-        console.log(res);
-        if (!res.ok) {
-            window.location.href = '/login';
-        }
-        return res.json()
-    }).then(data => {
-        console.log('Data: ', data);
-        const spanFirstName = document.querySelector('#firstname');
-        const spanFirstNameHead = document.querySelector('#firstname_head');
-        const spanLastName = document.querySelector('#lastname');
-        const spanEmail = document.querySelector('#email');
-        console.log('data2', params);
-        if (params) {
-            data.user['firstName'] = params['firstName']
-            data.user['lastName'] = params['lastName']
-            data.user['email'] = params['email']
-        }
-        console.log('Data2: ', data);
-        spanFirstNameHead.textContent = userStorage['firstName'];
-        spanFirstName.textContent = userStorage['firstName'];
-        spanLastName.textContent = userStorage['lastName'];
-        spanEmail.textContent = userStorage['email'];
+    fetch(`http://localhost:8000/users/${userId}`, {
+        headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
     })
+        .then(res => {
+            if (!res.ok) {
+                window.location.href = '/login';
+            }
+            return res.json()
+        }).then(data => {
+            const spanFirstName = document.querySelector('#firstname');
+            const spanFirstNameHead = document.querySelector('#firstname_head');
+            const spanLastName = document.querySelector('#lastname');
+            const spanEmail = document.querySelector('#email');
+
+            spanFirstNameHead.textContent = data.firstName
+            spanFirstName.textContent = data.firstName
+            spanLastName.textContent = data.lastName
+            spanEmail.textContent = data.email
+        })
 }
+
+function openModal() {
+    document.getElementById('firstName').value = userStorage['firstName'];
+    document.getElementById('lastName').value = userStorage['lastName'];
+    document.getElementById('emailForm').value = userStorage['email'];
+    const modal = document.getElementById('my_modal_4');
+    modal.showModal();
+}
+
+function closeModal() {
+    const modal = document.getElementById('my_modal_4');
+    modal.close();
+}
+
 
 function setError(el, message) {
     el.style.border = '1px solid red';
@@ -43,11 +46,22 @@ function setError(el, message) {
 const userForm = document.querySelector('#userForm');
 const user = localStorage.getItem('user');
 const userParse = JSON.parse(user)
-
+const userString = localStorage.getItem('user');
+const userStorage = JSON.parse(userString);
+const userId = userStorage['id']
 fetchProfilo()
+
+document.getElementById('modifica').addEventListener('click', function () {
+    openModal();
+});
 
 userForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const conferma = confirm("Sei sicuro di voler salvare le modifiche?");
+    if (!conferma) {
+        console.log("Modifica annullata.");
+        return;
+    }
     document.querySelectorAll('.input-error').forEach((element) => {
         element.remove();
     });
@@ -57,8 +71,6 @@ userForm.addEventListener('submit', async (e) => {
     const email = e.target[2].value;
     const password = e.target[3].value;
     const confirmPassword = e.target[4].value;
-
-    console.log(firstName, lastName, email, password, confirmPassword);
 
     const validation = validate({
         firstName,
@@ -98,7 +110,7 @@ userForm.addEventListener('submit', async (e) => {
         return;
     }
 
-    const url = 'http://localhost:8000/users/' + userParse.id ;
+    const url = 'http://localhost:8000/users/' + userParse.id;
 
     fetch(url, {
         method: 'PUT',
@@ -116,16 +128,14 @@ userForm.addEventListener('submit', async (e) => {
         .then(data => {
             if (data.isError) {
                 Object.keys(data.error).forEach(key => setError(document.querySelector(`input[name=${key}]`), data.error[key]))
-                console.log(data.error[key])
             } else {
                 const user = JSON.parse(localStorage.getItem('user'));
-                console.log('1',user);
                 user.firstName = firstName;
                 user.lastName = lastName;
                 user.email = email;
                 localStorage.setItem('user', JSON.stringify(user));
-                console.log('2',user);
-                fetchProfilo(user)
+                fetchProfilo()
+                closeModal()
             }
         })
 });

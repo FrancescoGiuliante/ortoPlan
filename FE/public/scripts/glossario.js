@@ -16,7 +16,6 @@ function showTable() {
 
     let child = parolaTableBody.lastElementChild
     while (child) {
-        console.log(child)
         parolaTableBody.removeChild(child)
     }
 

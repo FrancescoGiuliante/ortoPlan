@@ -51,9 +51,8 @@
                             </svg>
                             <span id="email">Loading ...</span>
                         </label>
-                        <button
-                            class="btn bg-[#90ee90] hover:bg-white hover:border-2  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]"
-                            onclick="my_modal_4.showModal()">Modifica profilo</button>
+                        <button id="modifica"
+                            class="btn bg-[#90ee90] hover:bg-white hover:border-2  mb-8 md:mb-0 text-[14px] hover:border-[#90ee90] w-[300px]">Modifica profilo</button>
                         <dialog id="my_modal_4" class="modal">
                             <div class="modal-box md:w-1/2 md:max-w-5xl">
                                 <h1 class="text-center text-[18px]">Modifica il tuo profilo</h1>
@@ -64,21 +63,21 @@
                                                 <label class="label">
                                                     <span class="label-text">Nome</span>
                                                 </label>
-                                                <input type="text" name="firstName" placeholder="nome"
+                                                <input type="text" id="firstName" name="firstName" placeholder="nome"
                                                     class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Cognome</span>
                                                 </label>
-                                                <input type="text" name="lastName" placeholder="cognome"
+                                                <input type="text" id="lastName" name="lastName" placeholder="cognome"
                                                     class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control">
                                                 <label class="label">
                                                     <span class="label-text">Email</span>
                                                 </label>
-                                                <input type="email" name="email" placeholder="email"
+                                                <input type="email" id="emailForm" name="email" placeholder="email"
                                                     class="input input-bordered border-2 border-blue-400" />
                                             </div>
                                             <div class="form-control  tooltip tooltip-right "
@@ -86,7 +85,7 @@
                                                 <label class="label">
                                                     <span class="label-text">Password</span>
                                                 </label>
-                                                <input type="password" name="password" placeholder="password"
+                                                <input type="password" id="password" name="password" placeholder="password"
                                                     class="w-full input border-2 input-bordered border-blue-400" />
                                             </div>
                                             <div class="form-control">
@@ -133,7 +132,6 @@
                     <script src="/scripts/notifiche.js"></script>
                     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
                     <script src="/scripts/profilo.js"></script>
-                    <script src="/scripts/confirmation.js"></script>
 </body>
 
 </html>
